@@ -1,267 +1,81 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>《德古拉：永恆暗夜》AI原生電影 - NFT文化收藏平台</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+    <title>AIF.Center - Hong Kong AI International Film Festival Submission Center</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    colors: {
+                        black: '#1a1a1a', 
+                        offblack: '#222222',
+                        white: '#ffffff',
+                        offwhite: '#f9f9f9',
+                        gray: {
+                            100: '#f3f3f3',
+                            200: '#e5e5e5',
+                            500: '#737373',
+                            900: '#111111'
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 40s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --primary: #8b0000;
-            --secondary: #4a0e4e;
-            --accent: #dc143c;
-            --gold: #ffd700;
-        }
-        
         body {
-            font-family: 'Crimson Text', serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(74, 14, 78, 0.1) 0%, transparent 20%);
+            background-color: #ffffff;
+            color: #1a1a1a;
+            -webkit-font-smoothing: antialiased;
         }
         
-        .logo-font {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 800;
-            font-size: 2.2rem;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-            display: inline-block;
-            text-shadow: 0 0 15px rgba(220, 20, 60, 0.3);
-            animation: logoGlow 3s ease-in-out infinite alternate;
+        body[data-lang="en"] .lang-zh { display: none !important; }
+        body[data-lang="zh"] .lang-en { display: none !important; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff; }
+        ::-webkit-scrollbar-thumb { background: #e5e5e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ccc; }
+
+        .academy-btn {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        .academy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .border-grid { border: 1px solid #e5e5e5; }
+
+        .reveal-text { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal-text.active { opacity: 1; transform: translateY(0); }
         
-        @keyframes logoGlow {
-            0% { text-shadow: 0 0 10px rgba(220, 20, 60, 0.3); }
-            100% { text-shadow: 0 0 25px rgba(220, 20, 60, 0.6), 0 0 35px rgba(139, 0, 0, 0.4); }
-        }
-        
-        .logo-sub {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-top: -8px;
-            text-align: center;
-            opacity: 0.8;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-        }
-        
-        .accent-bg {
-            background: rgba(220, 20, 60, 0.1);
-            border: 1px solid rgba(220, 20, 60, 0.2);
-        }
-        
-        .card {
-            background-color: rgba(26, 32, 44, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(220, 20, 60, 0.2);
-            border-color: rgba(220, 20, 60, 0.3);
-        }
-        
-        .navbar {
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(220, 20, 60, 0.1);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transition: all 0.3s ease;
-            border: none;
-            font-weight: 600;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.4);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        
-        .btn-secondary:hover {
-            background-color: rgba(220, 20, 60, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        .hero {
-            position: relative;
-            overflow: hidden;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-        }
-        
-        .hero:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
-            z-index: 1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.7;
-            animation: bgPan 30s infinite linear;
-        }
-        
-        @keyframes bgPan {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-        
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 1s ease-in-out forwards;
-            opacity: 0;
-        }
-        
-        .animate-slide-up {
-            animation: slideUp 0.8s ease-in-out forwards;
-            opacity: 0;
-        }
-        
-        .animate-slide-right {
-            animation: slideRight 0.8s ease-in-out forwards;
-            opacity: 0;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes slideRight {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        .progress-bar {
-            background: linear-gradient(to right, var(--primary), var(--accent), var(--gold));
-            border-radius: 9999px;
-            height: 8px;
-        }
-        
-        .cyber-border {
-            position: relative;
-        }
-        
-        .cyber-border:after {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: linear-gradient(45deg, transparent 30%, var(--accent) 45%, var(--secondary) 55%, transparent 70%);
-            background-size: 200% 200%;
-            animation: borderGlow 5s linear infinite;
-            z-index: -1;
-            border-radius: 20px;
-        }
-        
-        @keyframes borderGlow {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-        
-        .ai-element {
-            position: absolute;
-            background-color: rgba(139, 0, 0, 0.1);
-            border: 1px solid rgba(139, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            padding: 10px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 12px;
-            color: var(--accent);
-            z-index: 3;
-            pointer-events: none;
-            box-shadow: 0 0 15px rgba(220, 20, 60, 0.1);
-        }
-        
-        .data-stream {
-            position: absolute;
-            height: 100px;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--accent), var(--secondary), transparent);
-            z-index: 0;
-            animation: dataStream 2s linear infinite;
-            opacity: 0.3;
-        }
-        
-        @keyframes dataStream {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
-        }
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img { transition: transform 0.7s ease; }
+        .group:hover .img-zoom-container img { transform: scale(1.05); }
         
         .mobile-menu {
             display: none;
@@ -270,371 +84,17 @@
             right: 0;
             width: 300px;
             height: 100vh;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
+            background: white;
             z-index: 1000;
             padding: 20px;
             transform: translateX(100%);
             transition: transform 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
         
         .mobile-menu.open {
             transform: translateX(0);
-        }
-        
-        .mobile-menu-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--accent);
-        }
-        
-        .nft-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .card:hover .nft-img {
-            transform: scale(1.05);
-        }
-        
-        .ai-tech-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .token-card {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .token-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(220, 20, 60, 0.25);
-        }
-        
-        .dracula-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-        
-        .section-title.center:after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .ai-chip {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(220, 20, 60, 0.3);
-            border-radius: 20px;
-            padding: 5px 15px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin: 0 5px 5px 0;
-        }
-        
-        .stats-card {
-            text-align: center;
-            padding: 25px;
-            border-radius: 16px;
-            background: rgba(26, 32, 44, 0.5);
-            border: 1px solid rgba(220, 20, 60, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .stats-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            background: rgba(26, 32, 44, 0.7);
-        }
-        
-        .stats-card i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        .stats-card .number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .nft-card-hover {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .nft-card:hover .nft-card-hover {
-            transform: translateY(0);
-        }
-        
-        .filter-pill {
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 16px;
-            border-radius: 9999px;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-        
-        .filter-pill.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-        
-        .filter-pill:hover:not(.active) {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .token-badge {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 2px 8px;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            overflow-y: auto;
-        }
-        
-        .modal-content {
-            background-color: #111;
-            margin: 5% auto;
-            width: 90%;
-            max-width: 800px;
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            z-index: 10;
-        }
-        
-        .nft-detail-container {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        @media (min-width: 768px) {
-            .nft-detail-container {
-                flex-direction: row;
-            }
-        }
-        
-        .nft-detail-image {
-            flex: 1;
-            min-height: 400px;
-            background-color: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .nft-detail-info {
-            flex: 1;
-            padding: 30px;
-        }
-        
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 4px;
-        }
-        
-        .recognition-card {
-            background: rgba(26, 32, 44, 0.7);
-            border-radius: 16px;
-            padding: 25px;
-            height: 100%;
-            transition: all 0.3s ease;
-        }
-        
-        .recognition-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(220, 20, 60, 0.1);
-            border: 1px solid rgba(220, 20, 60, 0.2);
-        }
-        
-        .market-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .market-table th, .market-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .market-table th {
-            background: rgba(220, 20, 60, 0.1);
-            font-weight: 600;
-            color: var(--accent);
-        }
-        
-        .market-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .market-table tr:hover {
-            background: rgba(220, 20, 60, 0.05);
-        }
-        
-        .login-container {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .login-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 280px;
-            background: rgba(26, 32, 44, 0.95);
-            border: 1px solid rgba(220, 20, 60, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 10px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none;
-            z-index: 100;
-        }
-        
-        .login-container:hover .login-dropdown {
-            display: block;
-        }
-        
-        .login-dropdown h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        .login-option {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .login-option:hover {
-            background: rgba(220, 20, 60, 0.1);
-        }
-        
-        .login-option i {
-            font-size: 1.25rem;
-            margin-right: 12px;
-            width: 24px;
-            text-align: center;
-        }
-        
-        .login-divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 15px 0;
-        }
-        
-        .wallet-option {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(220, 20, 60, 0.2);
-        }
-        
-        .gothic-text {
-            font-family: 'Crimson Text', serif;
-            font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .gothic-accent {
-            color: var(--accent);
-            text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
-        }
-        
-        .bloodmoon-glow {
-            box-shadow: 0 0 20px rgba(220, 20, 60, 0.3);
-        }
-        
-        .vampire-bat {
-            animation: vampireBat 4s ease-in-out infinite;
-        }
-        
-        @keyframes vampireBat {
-            0%, 100% { transform: rotate(0deg) translateY(0px); }
-            25% { transform: rotate(5deg) translateY(-5px); }
-            50% { transform: rotate(0deg) translateY(-10px); }
-            75% { transform: rotate(-5deg) translateY(-5px); }
-        }
-        
-        .castle-silhouette {
-            background: linear-gradient(to bottom, transparent 0%, rgba(139, 0, 0, 0.2) 100%);
-            border-radius: 0 0 50% 50%;
         }
         
         @media (max-width: 768px) {
@@ -646,1390 +106,206 @@
                 display: block;
             }
             
-            .ai-tech-img {
-                height: 300px;
-            }
-            
-            .logo-font {
-                font-size: 1.6rem;
-            }
-            
-            .hero-bg {
-                animation: none;
-            }
-            
-            .hero {
-                min-height: 50vh;
-            }
-            
-            .section-title:after {
-                width: 40px;
-                bottom: -8px;
-            }
-            
-            .market-table {
+            .mobile-menu {
                 display: block;
-                overflow-x: auto;
-            }
-            
-            .login-dropdown {
-                width: 240px;
-                right: -20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero {
-                min-height: 40vh;
-            }
-            
-            .logo-font {
-                font-size: 1.3rem;
-            }
-            
-            .logo-sub {
-                font-size: 0.55rem;
             }
         }
     </style>
 </head>
-<body>
-    <!-- AI Elements -->
-    <div class="ai-element" style="top: 120px; left: 10%;">
-        NFT_ID: DR-001 <br>
-        狀態: AI生成中 <br>
-        // 德古拉永恆暗夜NFT
-    </div>
-    
-    <div class="ai-element" style="bottom: 150px; right: 15%;">
-        區塊高度: #1337666 <br>
-        哈希: 0xDAC...ULA <br>
-        // 區塊鏈認證
-    </div>
-    
-    <!-- Data streams -->
-    <div class="data-stream" style="left: 15%; animation-delay: 0s;"></div>
-    <div class="data-stream" style="left: 35%; animation-delay: 0.5s;"></div>
-    <div class="data-stream" style="left: 55%; animation-delay: 1s;"></div>
-    <div class="data-stream" style="left: 75%; animation-delay: 1.5s;"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar fixed w-full z-50 px-4 py-3">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="dracula-logo">
-                <div class="logo-font">德古拉：永恆暗夜</div>
-                <div class="logo-sub">吸血鬼傳奇數位宇宙</div>
-            </a>
-            <div class="hidden md:flex space-x-8 desktop-nav">
-                <a href="#about" class="hover:text-red-400 transition gothic-text">關於項目</a>
-                <a href="#cultural" class="hover:text-red-400 transition gothic-text">文化價值</a>
-                <a href="#nft" class="hover:text-red-400 transition gothic-text">NFT系列</a>
-                <a href="#technology" class="hover:text-red-400 transition gothic-text">AI技術</a>
-                <a href="#experience" class="hover:text-red-400 transition gothic-text">觀影體驗</a>
-                <a href="#community" class="hover:text-red-400 transition gothic-text">社群</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                <!-- Login Container -->
-                <div class="login-container relative">
-                    <a href="#login" class="btn-primary px-6 py-2 rounded-full text-sm">登入</a>
-                    <div class="login-dropdown">
-                        <h3 class="font-bold text-lg mb-4">登入德古拉宇宙</h3>
-                        
-                        <div class="login-option" data-login="google">
-                            <i class="fab fa-google text-red-500"></i>
-                            <span>使用Google登入</span>
-                        </div>
-                        
-                        <div class="login-option" data-login="facebook">
-                            <i class="fab fa-facebook text-blue-600"></i>
-                            <span>使用Facebook登入</span>
-                        </div>
-                        
-                        <div class="login-option" data-login="apple">
-                            <i class="fab fa-apple"></i>
-                            <span>使用Apple登入</span>
-                        </div>
-                        
-                        <div class="login-divider"></div>
-                        
-                        <div class="login-option wallet-option" data-login="metamask">
-                            <i class="fas fa-wallet text-yellow-400"></i>
-                            <span>連接MetaMask錢包</span>
-                        </div>
-                        
-                        <div class="login-option wallet-option" data-login="walletconnect">
-                            <i class="fas fa-plug text-blue-300"></i>
-                            <span>連接WalletConnect</span>
-                        </div>
-                    </div>
+<body data-lang="en" class="bg-white text-black selection:bg-black selection:text-white">
+
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-300">
+        <div class="px-6 md:px-8 py-4 flex justify-between items-center max-w-[1920px] mx-auto">
+            <a href="#" class="flex items-center gap-4 group">
+                <div class="flex flex-col leading-tight">
+                    <span class="text-lg font-bold tracking-tight">AIF.CENTER</span>
+                    <span class="text-[0.6rem] font-mono uppercase tracking-wider text-gray-500 group-hover:text-black transition-colors">
+                        <span class="lang-en">Submission Center</span>
+                        <span class="lang-zh">征片中心</span>
+                    </span>
                 </div>
+            </a>
+            
+            <div class="hidden xl:flex items-center gap-1 text-[13px] font-medium tracking-wide desktop-nav">
+                <a href="#about" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">About Us</span><span class="lang-zh">關於我們</span></a>
+                <a href="#services" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Services</span><span class="lang-zh">服務產品</span></a>
+                <a href="#network" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Global Network</span><span class="lang-zh">全球網絡</span></a>
+                <a href="#ecosystem" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Ecosystem</span><span class="lang-zh">生態系統</span></a>
+                <a href="#partners" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Partners</span><span class="lang-zh">合作夥伴</span></a>
+                <a href="#contact" class="px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"><span class="lang-en">Contact</span><span class="lang-zh">聯繫我們</span></a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLanguage()" class="text-xs font-mono border border-gray-200 px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all uppercase">
+                    <span class="lang-en">繁中</span><span class="lang-zh">EN</span>
+                </button>
                 
-                <button class="md:hidden text-white mobile-menu-btn">
-                    <i class="fas fa-bars text-xl"></i>
+                <a href="#submit" class="hidden md:flex bg-black text-white text-[13px] font-medium px-6 py-3 rounded-full academy-btn items-center gap-2">
+                    <span class="lang-en">Submit Work</span><span class="lang-zh">提交作品</span>
+                </a>
+                
+                <button class="md:hidden text-black mobile-menu-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
+    <!-- 移動菜單 -->
     <div class="mobile-menu">
-        <div class="mobile-menu-close">
-            <i class="fas fa-times"></i>
+        <div class="mobile-menu-close cursor-pointer text-right mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
         </div>
         
-        <div class="mt-12 flex flex-col space-y-6">
-            <a href="#about" class="text-xl hover:text-red-400 transition">關於項目</a>
-            <a href="#cultural" class="text-xl hover:text-red-400 transition">文化價值</a>
-            <a href="#nft" class="text-xl hover:text-red-400 transition">NFT系列</a>
-            <a href="#technology" class="text-xl hover:text-red-400 transition">AI技術</a>
-            <a href="#experience" class="text-xl hover:text-red-400 transition">觀影體驗</a>
-            <a href="#community" class="text-xl hover:text-red-400 transition">社群</a>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="container mx-auto px-4 hero-content">
-            <div class="max-w-4xl animate-fade-in">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 gothic-text">《德古拉：永恆暗夜》<br>AI原生電影宇宙</h1>
-                <p class="text-xl text-gray-300 mb-8 gothic-text">
-                    全球首部完全由AI技術製作的128年吸血鬼經典電影，打造創新的NFT觀影生態系統，收藏獨一無二的哥特文化數位資產。
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#nft" class="btn-primary px-8 py-3 rounded-full font-medium text-center">
-                        探索NFT收藏
-                    </a>
-                    <a href="#cultural" class="btn-secondary px-8 py-3 rounded-full font-medium text-center">
-                        了解文化價值
-                    </a>
-                </div>
-                
-                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="stats-card">
-                        <i class="fas fa-book-dead vampire-bat"></i>
-                        <div class="number">128年</div>
-                        <div class="text-sm">經典傳奇</div>
-                    </div>
-                    <div class="stats-card">
-                        <i class="fas fa-film vampire-bat"></i>
-                        <div class="number">120分鐘</div>
-                        <div class="text-sm">完整電影</div>
-                    </div>
-                    <div class="stats-card">
-                        <i class="fas fa-cubes vampire-bat"></i>
-                        <div class="number">188,500</div>
-                        <div class="text-sm">限量NFT</div>
-                    </div>
-                    <div class="stats-card">
-                        <i class="fas fa-globe vampire-bat"></i>
-                        <div class="number">184個</div>
-                        <div class="text-sm">國家地區</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="py-16" id="about">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <h2 class="text-3xl font-bold mb-6 gothic-text">重塑吸血鬼文學經典</h2>
-                <p class="text-xl text-gray-300 gothic-text">
-                    《德古拉》是愛爾蘭作家布拉姆·史托克創作的哥特恐怖小說，被譽為現代吸血鬼文學的開山之作。
-                    我們運用最先進的生成式AI與區塊鏈技術，為這部擁有128年歷史的西方恐怖文學經典注入數位生命。
-                </p>
-            </div>
+        <div class="flex flex-col space-y-6">
+            <a href="#about" class="text-lg hover:text-gray-600 transition"><span class="lang-en">About Us</span><span class="lang-zh">關於我們</span></a>
+            <a href="#services" class="text-lg hover:text-gray-600 transition"><span class="lang-en">Services</span><span class="lang-zh">服務產品</span></a>
+            <a href="#network" class="text-lg hover:text-gray-600 transition"><span class="lang-en">Global Network</span><span class="lang-zh">全球網絡</span></a>
+            <a href="#ecosystem" class="text-lg hover:text-gray-600 transition"><span class="lang-en">Ecosystem</span><span class="lang-zh">生態系統</span></a>
+            <a href="#partners" class="text-lg hover:text-gray-600 transition"><span class="lang-en">Partners</span><span class="lang-zh">合作夥伴</span></a>
+            <a href="#contact" class="text-lg hover:text-gray-600 transition"><span class="lang-en">Contact</span><span class="lang-zh">聯繫我們</span></a>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card p-6 animate-slide-up bloodmoon-glow">
-                    <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                        <i class="fas fa-skull"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">哥特文學傳承</h3>
-                    <p class="text-gray-400">
-                        讓128年恐怖文學通過AI技術跨越語言和文化鴻溝，以更具想像力的方式觸達全球觀眾，展現西方哥特文化的獨特魅力。
-                    </p>
-                </div>
-                
-                <div class="card p-6 animate-slide-up bloodmoon-glow">
-                    <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">技術創新</h3>
-                    <p class="text-gray-400">
-                        開創AI原生恐怖電影製作的新範式，全流程依靠人工智能完成，推動AI在藝術創作領域的極限應用。
-                    </p>
-                </div>
-                
-                <div class="card p-6 animate-slide-up bloodmoon-glow">
-                    <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                        <i class="fas fa-globe-americas"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">全球影響</h3>
-                    <p class="text-gray-400">
-                        通過多語言製作和文化本土化，向世界展示哥特文化中光明與黑暗、文明與野性的哲學思考。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cultural Value Section -->
-    <section class="py-16 bg-gray-900" id="cultural">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-6 gothic-text">全球文化價值與影響力</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    《德古拉》作為世界級文化IP，擁有深厚的學術基礎與廣泛的全球影響力，為本項目提供強大的文化背書與市場認知。
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="recognition-card">
-                    <div class="text-red-400 text-5xl mb-4 vampire-bat">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">學術研究地位</h3>
-                    <p class="text-gray-400 mb-4">
-                        全球已有超過5,000篇學術論文研究《德古拉》，被翻譯成47種語言在全球發行。
-                    </p>
-                    <ul class="text-gray-400 space-y-2">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>哈佛、牛津、劍橋等50所頂尖學府均設有專門研究課程</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>被視為研究維多利亞時代社會文化和恐怖文學發展的重要文本</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>每年全球舉辦150+場《德古拉》主題學術會議</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="recognition-card">
-                    <div class="text-red-400 text-5xl mb-4 vampire-bat">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">影視改編成就</h3>
-                    <p class="text-gray-400 mb-4">
-                        《德古拉》是世界文學作品中被影視化最成功的作品之一，影響了整個恐怖電影產業。
-                    </p>
-                    <ul class="text-gray-400 space-y-2">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>全球基於《德古拉》改編的影視作品超過200部</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>1992年法蘭西斯·福特·柯波拉版本全球票房4.73億美元</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>Hotel Transylvania系列動畫電影全球票房超過13億美元</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="recognition-card">
-                    <div class="text-red-400 text-5xl mb-4 vampire-bat">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">全球市場數據</h3>
-                    <p class="text-gray-400 mb-4">
-                        《德古拉》在全球範圍內擁有廣泛的文化認知基礎，特別是歐美地區：
-                    </p>
-                    <ul class="text-gray-400 space-y-2">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>北美知識分子認知度達89%，大眾認知度72%</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>歐洲知識分子群體中認知度達85%</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                            <span>被聯合國教科文組織評為「世界恐怖文學遺產」</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="card p-6">
-                <h3 class="text-2xl font-bold mb-6 text-center gothic-text">全球文化認知度分析</h3>
-                <div class="overflow-x-auto">
-                    <table class="market-table">
-                        <thead>
-                            <tr>
-                                <th>地區</th>
-                                <th>知識分子認知度</th>
-                                <th>大眾認知度</th>
-                                <th>年度文化產品產值</th>
-                                <th>潛在用戶基數</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>北美</td>
-                                <td>89%</td>
-                                <td>72%</td>
-                                <td>12億美元</td>
-                                <td>8,000萬人</td>
-                            </tr>
-                            <tr>
-                                <td>歐洲</td>
-                                <td>85%</td>
-                                <td>65%</td>
-                                <td>8億歐元</td>
-                                <td>6,000萬人</td>
-                            </tr>
-                            <tr>
-                                <td>日本</td>
-                                <td>78%</td>
-                                <td>58%</td>
-                                <td>50億日元</td>
-                                <td>3,000萬人</td>
-                            </tr>
-                            <tr>
-                                <td>韓國</td>
-                                <td>65%</td>
-                                <td>45%</td>
-                                <td>200億韓元</td>
-                                <td>1,500萬人</td>
-                            </tr>
-                            <tr>
-                                <td>中國</td>
-                                <td>45%</td>
-                                <td>28%</td>
-                                <td>5億人民幣</td>
-                                <td>5,000萬人</td>
-                            </tr>
-                            <tr>
-                                <td>其他地區</td>
-                                <td>35%</td>
-                                <td>25%</td>
-                                <td>2億美元</td>
-                                <td>3,000萬人</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-gray-800 p-6 rounded-lg">
-                        <h4 class="text-xl font-bold mb-4 text-red-400 gothic-text">權威機構評價</h4>
-                        <div class="space-y-4">
-                            <blockquote class="border-l-4 border-red-400 pl-4">
-                                <p class="text-gray-300 italic">
-                                    "《德古拉》是人類恐怖文學寶庫中的瑰寶，其對人性陰暗面的深刻洞察和對恐懼心理的真實描繪，具有跨越時代和文化的普世價值。"
-                                </p>
-                                <footer class="text-gray-400 mt-2">— 聯合國教科文組織</footer>
-                            </blockquote>
-                            
-                            <blockquote class="border-l-4 border-red-400 pl-4">
-                                <p class="text-gray-300 italic">
-                                    "《德古拉》在世界恐怖文學史上的地位等同於《科學怪人》在科幻文學中的地位。"
-                                </p>
-                                <footer class="text-gray-400 mt-2">— 哈佛大學比較文學系</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-800 p-6 rounded-lg">
-                        <h4 class="text-xl font-bold mb-4 text-red-400 gothic-text">國際獎項認可</h4>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-trophy text-yellow-400 mt-1 mr-3"></i>
-                                <div>
-                                    <div class="font-semibold">2020年</div>
-                                    <div class="text-gray-400">被國際比較文學學會評為「世界恐怖文學遺產」</div>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-trophy text-yellow-400 mt-1 mr-3"></i>
-                                <div>
-                                    <div class="font-semibold">2021年</div>
-                                    <div class="text-gray-400">入選美國《時代》周刊「塑造現代恐怖文化的100本書」</div>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-trophy text-yellow-400 mt-1 mr-3"></i>
-                                <div>
-                                    <div class="font-semibold">2023年</div>
-                                    <div class="text-gray-400">獲得英國文學振興會「恐怖文學特別貢獻獎」</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NFT Collections Section -->
-    <section class="py-16" id="nft">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-6 gothic-text">NFT收藏系列</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    收藏獨一無二的《德古拉：永恆暗夜》數位文化資產，每件NFT都是您在AI電影宇宙中的專屬通行證。
-                </p>
-            </div>
-            
-            <!-- Filter Pills -->
-            <div class="flex justify-center flex-wrap gap-4 mb-12">
-                <div class="filter-pill active" data-filter="all">全部系列</div>
-                <div class="filter-pill" data-filter="count">德古拉伯爵NFT</div>
-                <div class="filter-pill" data-filter="relics">黑暗聖物</div>
-                <div class="filter-pill" data-filter="characters">暗夜角色</div>
-                <div class="filter-pill" data-filter="bloodmoon">血月NFT</div>
-                <div class="filter-pill" data-filter="pass">暗夜通行證</div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- 德古拉伯爵NFT -->
-                <div class="card overflow-hidden nft-item token-card" data-id="1" data-category="count">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-content relative castle-silhouette">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-crown text-5xl mb-2 text-red-400 vampire-bat"></i>
-                            <div>德古拉伯爵NFT</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">黑暗領主</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">德古拉伯爵NFT</h3>
-                            <span class="text-sm text-gray-400">限量666枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            動態生成的60-120秒視頻藝術品，融合哥特美學與現代數字藝術，擁有DAO核心投票權。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥19,999</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 德古拉的誓約之戒 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="2" data-category="relics">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-ring text-5xl mb-2 text-purple-400"></i>
-                            <div>德古拉的誓約之戒</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">黑暗聖物</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">德古拉的誓約之戒</h3>
-                            <span class="text-sm text-gray-400">限量6,666枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            3D互動場景，360度觀察體驗，象徵永恆詛咒的關鍵道具，血月NFT合成必備材料。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥1,999</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 吸血鬼的銀質十字架 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="3" data-category="relics">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-cross text-5xl mb-2 text-blue-300"></i>
-                            <div>吸血鬼的銀質十字架</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">黑暗聖物</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">吸血鬼的銀質十字架</h3>
-                            <span class="text-sm text-gray-400">限量13,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            高保真3D物品動畫，神聖與邪惡對抗的物理模擬效果，救贖主題的視覺表現。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥299</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 范海辛的聖水 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="4" data-category="relics">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-flask text-5xl mb-2 text-cyan-400"></i>
-                            <div>范海辛的聖水</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">黑暗聖物</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">范海辛的聖水</h3>
-                            <span class="text-sm text-gray-400">限量13,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            神秘發光脈動效果，驅魔聖水細節還原，正邪對抗的藝術表達。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥599</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 德古拉城堡的鑰匙 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="5" data-category="relics">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-key text-5xl mb-2 text-yellow-500"></i>
-                            <div>德古拉城堡的鑰匙</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">黑暗聖物</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">德古拉城堡的鑰匙</h3>
-                            <span class="text-sm text-gray-400">限量13,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            古老金屬光澤特效技術，開啟黑暗之門主題，維多利亞時代工藝展示。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥899</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 露西的十字項鍊 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="6" data-category="relics">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-gem text-5xl mb-2 text-pink-300"></i>
-                            <div>露西的十字項鍊</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">黑暗聖物</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">露西的十字項鍊</h3>
-                            <span class="text-sm text-gray-400">限量13,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            純潔光輝環繞設計，愛情與救贖場景營造，犧牲精神的哲學思考。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥699</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 米娜的日記 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="7" data-category="relics">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-book text-5xl mb-2 text-amber-400"></i>
-                            <div>米娜的日記</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">黑暗聖物</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">米娜的日記</h3>
-                            <span class="text-sm text-gray-400">限量6,000枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            古典書頁翻動效果，心理恐怖主題表達，維多利亞時代女性覺醒。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥1,299</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 德古拉伯爵（角色） -->
-                <div class="card overflow-hidden nft-item token-card" data-id="8" data-category="characters">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-user-tie text-5xl mb-2 text-red-500 vampire-bat"></i>
-                            <div>德古拉伯爵</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">暗夜角色</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">德古拉伯爵</h3>
-                            <span class="text-sm text-gray-400">限量6,666枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            AI動態肖像技術，黑暗魅力主題表達，支持PFP頭像使用，個性化互動觀影功能。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥1,999</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 米娜·哈克 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="9" data-category="characters">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-female text-5xl mb-2 text-blue-400"></i>
-                            <div>米娜·哈克</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">暗夜角色</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">米娜·哈克</h3>
-                            <span class="text-sm text-gray-400">限量8,888枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            純潔與墮落的雙重形象，心理轉變過程展現，維多利亞女性代表。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥1,299</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 范海辛教授 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="10" data-category="characters">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-user-graduate text-5xl mb-2 text-green-400"></i>
-                            <div>范海辛教授</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">暗夜角色</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">范海辛教授</h3>
-                            <span class="text-sm text-gray-400">限量13,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            正義使者象徵，科學與迷信的結合，驅魔專家的藝術呈現。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥899</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 露西·韋斯滕拉 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="11" data-category="characters">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-heart-broken text-5xl mb-2 text-pink-400"></i>
-                            <div>露西·韋斯滕拉</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">暗夜角色</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">露西·韋斯滕拉</h3>
-                            <span class="text-sm text-gray-400">限量13,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            悲劇美學代表，純真與誘惑的對比，吸血鬼轉化的深度表現。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥699</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 約翰·哈克 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="12" data-category="characters">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-male text-5xl mb-2 text-gray-400"></i>
-                            <div>約翰·哈克</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">暗夜角色</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">約翰·哈克</h3>
-                            <span class="text-sm text-gray-400">限量13,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            恐懼與勇氣的化身，普通人面對超自然的反應，維多利亞時代男性形象。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥599</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 雷恩菲爾德 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="13" data-category="characters">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-user-ninja text-5xl mb-2 text-purple-400"></i>
-                            <div>雷恩菲爾德</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">暗夜角色</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">雷恩菲爾德</h3>
-                            <span class="text-sm text-gray-400">限量13,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            瘋狂與忠誠的矛盾，精神控制主題，黑暗僕從的悲劇。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥499</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 德古拉的新娘們 -->
-                <div class="card overflow-hidden nft-item token-card" data-id="14" data-category="characters">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-users text-5xl mb-2 text-red-300"></i>
-                            <div>德古拉的新娘們</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">暗夜角色</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">德古拉的新娘們</h3>
-                            <span class="text-sm text-gray-400">限量18,667枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            三位新娘的不同特色，誘惑與危險的完美結合，集體與個體的藝術展現。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥399</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 血月NFT -->
-                <div class="card overflow-hidden nft-item token-card" data-id="15" data-category="bloodmoon">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-moon text-5xl mb-2 text-red-600 vampire-bat"></i>
-                            <div>血月NFT</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">合成系列</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">血月NFT</h3>
-                            <span class="text-sm text-gray-400">理論上限30,000枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            由黑暗聖物NFT + 暗夜角色NFT合成，每個都是獨一無二的30-60秒AI恐怖電影短片。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">合成獲得</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 暗夜通行證NFT -->
-                <div class="card overflow-hidden nft-item token-card" data-id="16" data-category="pass">
-                    <div class="bg-gray-800 w-full h-48 flex items-center justify-center relative">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-ticket-alt text-5xl mb-2 text-blue-400"></i>
-                            <div>暗夜通行證NFT</div>
-                        </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="token-badge">大眾層級</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold gothic-text">暗夜通行證NFT</h3>
-                            <span class="text-sm text-gray-400">限量33,333枚</span>
-                        </div>
-                        <p class="text-gray-400 mb-4 text-sm">
-                            120分鐘AI恐怖電影一次性觀看權，消耗型NFT，使用即消耗，未來續集優先購買權。
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-red-400 gothic-accent">¥99</span>
-                            <button class="btn-primary px-4 py-2 text-sm view-detail">
-                                查看詳情
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold mb-8 text-center gothic-text">NFT詳細分層說明</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="card p-8">
-                        <div class="flex items-start mb-6">
-                            <div class="bg-red-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-crown text-xl vampire-bat"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold mb-2 gothic-text">德古拉伯爵NFT</h4>
-                                <p class="text-gray-400">
-                                    作為黑暗領主層級，持有者可參與DAO核心治理，擁有NFT形象完整商業使用權，
-                                    並在電影片頭獲得署名權。每個德古拉伯爵NFT都是動態生成的藝術品，融合哥特美學與現代數字藝術。
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-800 rounded-lg p-4">
-                            <h5 class="font-bold mb-2">持有者權益：</h5>
-                            <ul class="space-y-2 text-gray-400">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                                    <span>參與項目重大決策投票，包括續集製作、IP授權等</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                                    <span>與主創團隊及文學顧問的私人交流會</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                                    <span>專屬虛擬城堡觀影，可邀請最多13人同時觀看</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="card p-8">
-                        <div class="flex items-start mb-6">
-                            <div class="bg-purple-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-gem text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold mb-2 gothic-text">黑暗聖物 & 暗夜角色 NFT</h4>
-                                <p class="text-gray-400">
-                                    黑暗聖物系列包含德古拉的誓約之戒、吸血鬼的銀質十字架等經典道具，每個都是3D互動模型。
-                                    暗夜角色系列包含德古拉伯爵、米娜·哈克等經典角色，每個角色都有獨特的AI人格。
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-gray-800 rounded-lg p-3">
-                                <h5 class="font-bold mb-1">聖物特色</h5>
-                                <ul class="text-sm text-gray-400">
-                                    <li>• 誓約之戒：360度觀察體驗</li>
-                                    <li>• 銀質十字架：物理模擬效果</li>
-                                    <li>• 范海辛聖水：發光脈動特效</li>
-                                </ul>
-                            </div>
-                            <div class="bg-gray-800 rounded-lg p-3">
-                                <h5 class="font-bold mb-1">角色功能</h5>
-                                <ul class="text-sm text-gray-400">
-                                    <li>• 與角色AI進行深度對話</li>
-                                    <li>• 以角色視角觀看電影</li>
-                                    <li>• 加入角色專屬粉絲社群</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technology Section -->
-    <section class="py-16 bg-gray-900" id="technology">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-6 gothic-text">AI原生恐怖電影技術</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    從劇本理解到恐怖視覺生成，全流程依靠人工智能技術完成，開創恐怖電影製作的全新範式。
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="mb-8">
-                        <h3 class="text-2xl font-bold mb-4 gothic-text">什麼是AI原生恐怖電影？</h3>
-                        <p class="text-gray-400">
-                            AI原生恐怖電影是指從劇本理解、恐怖氛圍營造、角色塑造、哥特場景構建、恐怖音效配樂到後期製作，
-                            全流程主要依靠人工智能技術完成的恐怖電影作品。它以AI為核心創作引擎，人類藝術家則扮演著「靈魂注入者」和「審美把關人」的角色。
-                        </p>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="text-red-400 text-xl mr-4">
-                                <i class="fas fa-paint-brush vampire-bat"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-bold mb-2 gothic-text">恐怖視覺生成技術</h4>
-                                <p class="text-gray-400">
-                                    使用Stable Diffusion XL、Midjourney V6和DALL-E 3生成高質量恐怖與哥特風格的靜態畫面，
-                                    並針對「哥特美學」與「吸血鬼文化」風格訓練專屬模型。
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-red-400 text-xl mr-4">
-                                <i class="fas fa-film vampire-bat"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-bold mb-2 gothic-text">恐怖視頻生成與動畫</h4>
-                                <p class="text-gray-400">
-                                    使用Runway ML Gen-2和Pika Labs實現靜態恐怖圖像到動態視頻的轉換，
-                                    並針對維多利亞時代服飾、建築動態效果等特殊場景開發專有算法。
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-red-400 text-xl mr-4">
-                                <i class="fas fa-microphone-alt vampire-bat"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-bold mb-2 gothic-text">恐怖語音與音頻</h4>
-                                <p class="text-gray-400">
-                                    使用ElevenLabs生成高質量的多語言恐怖配音，
-                                    並合成管風琴、大鍵琴等古典樂器與超自然音效。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative">
-                    <div class="bg-gray-800 w-full h-96 rounded-xl flex items-center justify-center castle-silhouette">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-brain text-7xl mb-4 vampire-bat"></i>
-                            <div class="text-xl">AI恐怖技術展示</div>
-                        </div>
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 bg-red-600 text-white p-4 rounded-xl bloodmoon-glow">
-                        <div class="text-sm">無限創意</div>
-                        <div class="text-xl font-bold gothic-text">完美呈現哥特世界</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card p-6">
-                    <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                        <i class="fas fa-skull"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">恐怖想像力無限</h3>
-                    <p class="text-gray-400">
-                        傳統恐怖電影難以呈現的維多利亞時代場景、超自然奇景和文學意境，AI可以輕鬆實現，完美還原小說作品的想像邊界。
-                    </p>
-                </div>
-                
-                <div class="card p-6">
-                    <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">藝術創作效率</h3>
-                    <p class="text-gray-400">
-                        大幅壓縮傳統恐怖電影製作週期，讓藝術家能夠更專注於核心創意表達和恐怖文化內涵的呈現。
-                    </p>
-                </div>
-                
-                <div class="card p-6">
-                    <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                        <i class="fas fa-language"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 gothic-text">多語言全球化</h3>
-                    <p class="text-gray-400">
-                        一次核心製作，即可同步輸出多種語言版本，並根據不同地區的恐怖文化審美微調視覺風格和配樂。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Viewing Experience Section -->
-    <section class="py-16" id="experience">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-6 gothic-text">觀影體驗創新</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    基於NFT的代幣門控觀影系統，提供個性化的沉浸式恐怖觀影體驗，重新定義恐怖電影觀看方式。
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6 gothic-text">多重觀影模式</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="card p-6 bloodmoon-glow">
-                            <div class="flex items-start">
-                                <div class="text-red-400 text-2xl mr-4 mt-1 vampire-bat">
-                                    <i class="fas fa-play-circle"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-bold mb-2 gothic-text">標準觀影模式</h4>
-                                    <p class="text-gray-400">
-                                        4K超高清畫質，7.1環繞聲，章節制結構，支持章節跳轉，多語言字幕和配音選擇。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card p-6 bloodmoon-glow">
-                            <div class="flex items-start">
-                                <div class="text-red-400 text-2xl mr-4 mt-1 vampire-bat">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-bold mb-2 gothic-text">角色視角模式</h4>
-                                    <p class="text-gray-400">
-                                        暗夜角色NFT持有者專享，以持有的角色視角體驗劇情，AI實時生成角色內心獨白。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card p-6 bloodmoon-glow">
-                            <div class="flex items-start">
-                                <div class="text-red-400 text-2xl mr-4 mt-1 vampire-bat">
-                                    <i class="fas fa-headset"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-bold mb-2 gothic-text">沉浸式VR模式</h4>
-                                    <p class="text-gray-400">
-                                        VR頭顯支持，360度沉浸體驗，可在德古拉城堡中自由行走，與AI角色進行實時互動。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <div class="bg-gray-800 w-full h-96 rounded-xl flex items-center justify-center castle-silhouette">
-                        <div class="text-gray-400 text-center">
-                            <i class="fas fa-tv text-7xl mb-4 vampire-bat"></i>
-                            <div class="text-xl">沉浸式恐怖觀影體驗</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-red-400 mb-2 gothic-accent">1,200萬</div>
-                    <div class="text-gray-400">全球潛在觀影用戶</div>
-                    <div class="text-sm text-gray-500 mt-2">基於《德古拉》全球認知度</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-red-400 mb-2 gothic-accent">188,500</div>
-                    <div class="text-gray-400">NFT總供應量</div>
-                    <div class="text-sm text-gray-500 mt-2">提供觀影權的NFT總數</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-red-400 mb-2 gothic-accent">1:64</div>
-                    <div class="text-gray-400">供需比例</div>
-                    <div class="text-sm text-gray-500 mt-2">64個潛在用戶競爭1個觀影權</div>
-                </div>
-            </div>
-            
-            <div class="mt-8 bg-gray-800 p-6 rounded-lg">
-                <h4 class="text-xl font-bold mb-4 gothic-text">價值增長機制</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-ticket-alt text-red-400 mt-1 mr-3"></i>
-                            <span class="text-gray-400">基礎價值：觀影權本身價值 99-19,999元</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-chart-line text-red-400 mt-1 mr-3"></i>
-                            <span class="text-gray-400">稀缺性溢價：供應有限，需求增長帶來價格上漲</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-medal text-red-400 mt-1 mr-3"></i>
-                            <span class="text-gray-400">收藏價值：首部AI原生恐怖電影的歷史意義</span>
-                        </li>
-                    </ul>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-users text-red-400 mt-1 mr-3"></i>
-                            <span class="text-gray-400">社群價值：高質量恐怖文化愛好者社區的準入權</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-gift text-red-400 mt-1 mr-3"></i>
-                            <span class="text-gray-400">未來權益：續集優先觀看、衍生品優先購買等</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-robot text-red-400 mt-1 mr-3"></i>
-                            <span class="text-gray-400">AI互動：與角色AI對話，個性化內容生成</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NFT Detail Modal -->
-    <div id="nft-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="nft-detail-container">
-                <div class="nft-detail-image">
-                    <div class="bg-gray-800 w-full h-full flex items-center justify-center">
-                        <div class="text-gray-400 text-center p-8">
-                            <i class="fas fa-crown text-7xl mb-4 text-red-400 vampire-bat" id="modal-icon"></i>
-                            <div class="text-2xl gothic-text" id="modal-title">德古拉伯爵NFT</div>
-                            <div class="mt-4" id="modal-type">黑暗領主層級</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="nft-detail-info">
-                    <h2 class="text-3xl font-bold mb-4 gothic-text" id="modal-name">德古拉伯爵NFT</h2>
-                    <div class="flex items-center mb-6">
-                        <span class="token-badge" id="modal-category">黑暗領主</span>
-                        <span class="ml-4 text-gray-400" id="modal-count">限量: 666枚</span>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold mb-3 gothic-text">作品描述</h3>
-                        <p class="text-gray-400" id="modal-description">
-                            德古拉伯爵NFT是黑暗領主層級的頂級收藏品，每個都是動態生成的60-120秒視頻藝術品，
-                            融合哥特美學與現代數字藝術。持有者可參與DAO核心治理，擁有NFT形象完整商業使用權，
-                            並在電影片頭獲得署名權。
-                        </p>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold mb-3 gothic-text">特色功能</h3>
-                        <div id="modal-features">
-                            <ul class="space-y-2 text-gray-400">
-                                <li class="flex items-start">
-                                    <i class="fas fa-vote-yea text-red-400 mt-1 mr-2"></i>
-                                    <span>參與項目重大決策投票，包括續集製作、IP授權等</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-handshake text-red-400 mt-1 mr-2"></i>
-                                    <span>與主創團隊及文學顧問的私人交流會</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-tv text-red-400 mt-1 mr-2"></i>
-                                    <span>專屬虛擬城堡觀影廳，可邀請最多13人同時觀看</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-palette text-red-400 mt-1 mr-2"></i>
-                                    <span>可要求AI生成個人專屬的《德古拉》角色形象</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-between items-center mb-6">
-                        <div>
-                            <div class="text-gray-400 text-sm">當前價格</div>
-                            <div class="text-2xl font-bold gothic-accent" id="modal-price">¥19,999</div>
-                        </div>
-                        <button class="btn-primary px-6 py-3 rounded-lg font-medium">
-                            立即收藏
-                        </button>
-                    </div>
-                    
-                    <div class="border-t border-gray-700 pt-4">
-                        <div class="text-gray-400 text-sm">區塊鏈</div>
-                        <div class="flex items-center">
-                            <i class="fab fa-ethereum text-gray-400 mr-2"></i>
-                            <span>以太坊主網 (ERC-721)</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="pt-6 border-t border-gray-200">
+                <a href="#submit" class="w-full bg-black text-white py-3 rounded-full font-medium text-center mb-4 block academy-btn">
+                    <span class="lang-en">Submit Work</span><span class="lang-zh">提交作品</span>
+                </a>
+                <button onclick="toggleLanguage()" class="w-full border border-gray-200 px-4 py-3 rounded-full font-medium text-center hover:bg-black hover:text-white transition-all uppercase">
+                    <span class="lang-en">繁中</span><span class="lang-zh">EN</span>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Community Section -->
-    <section class="py-16 bg-gray-900" id="community">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-6 gothic-text">加入德古拉永恆暗夜社群</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    與全球哥特文化愛好者、AI技術探索者和恐怖文學傳承者一起，共同見證吸血鬼經典的數位新生。
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="card p-8 mb-8 bloodmoon-glow">
-                        <h3 class="text-2xl font-bold mb-4 gothic-text">獨特互動體驗</h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-start">
-                                <div class="text-red-400 mr-3 mt-1 vampire-bat">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium gothic-text">AI角色對話系統</h4>
-                                    <p class="text-sm text-gray-400">
-                                        持有「暗夜角色」NFT的用戶，可與基於大語言模型訓練的、擁有完整人設和記憶的角色AI進行深度對話。
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="text-red-400 mr-3 mt-1 vampire-bat">
-                                    <i class="fas fa-vr-cardboard"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium gothic-text">角色視角觀影</h4>
-                                    <p class="text-sm text-gray-400">
-                                        持有者可選擇以該角色視角體驗電影，AI將生成專屬的內心獨白，提供沉浸式恐怖敘事體驗。
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="text-red-400 mr-3 mt-1 vampire-bat">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium gothic-text">角色社群准入</h4>
-                                    <p class="text-sm text-gray-400">
-                                        加入對應角色的專屬粉絲社群，與同好交流角色解讀與恐怖文化探討。
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="flex space-x-6 justify-center">
-                        <a href="#" class="text-3xl text-gray-400 hover:text-red-400 transition">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="#" class="text-3xl text-gray-400 hover:text-red-400 transition">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                        <a href="#" class="text-3xl text-gray-400 hover:text-red-400 transition">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-3xl text-gray-400 hover:text-red-400 transition">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
+    <!-- 英雄區 -->
+    <header class="relative pt-32 pb-20 px-6 md:px-8 max-w-[1920px] mx-auto border-b border-gray-200">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-8">
+                <div class="mb-6 inline-flex items-center gap-2 border border-gray-200 rounded-full px-3 py-1 bg-gray-50">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-[10px] uppercase tracking-widest font-mono font-medium text-gray-500">
+                        <span class="lang-en">Building Global Infrastructure for Creative Value Economy</span>
+                        <span class="lang-zh">構建AI時代創意價值經濟的全球基礎設施</span>
+                    </span>
                 </div>
                 
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="card p-6 bloodmoon-glow">
-                        <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 gothic-text">教育與文化傳承</h3>
-                        <p class="text-gray-400">
-                            與全球大學和文學機構合作，將NFT作為學習西方恐怖文學和哥特文化的沉浸式教具。
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-10 text-black">
+                    <span class="lang-en">Global First <br>AI Native Film</span>
+                    <span class="lang-zh">全球首個 <br>AI原生影視</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-500 max-w-2xl leading-relaxed font-light">
+                    <span class="lang-en">Submission and Distribution Center. Building the world's largest AI native film content submission and distribution network, breaking cultural, language, technical and commercial barriers, promoting the globalization of AI native film industry.</span>
+                    <span class="lang-zh">征集與分發中心。構建全球最大的AI原生影視內容征集與分發網絡，打破文化、語言、技術和商業壁壘，推動AI原生影視產業的全球化發展。</span>
+                </p>
+                
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mt-12">
+                    <a href="#submit" class="bg-black text-white px-8 py-4 rounded-full font-bold academy-btn text-center inline-flex items-center justify-center">
+                        <span class="lang-en">Submit Your Work</span>
+                        <span class="lang-zh">提交您的作品</span>
+                    </a>
+                    <a href="#services" class="border border-black text-black px-8 py-4 rounded-full font-bold text-center inline-flex items-center justify-center hover:bg-black hover:text-white transition-all">
+                        <span class="lang-en">Explore Platform</span>
+                        <span class="lang-zh">探索平台</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 flex flex-col justify-end">
+                <div class="grid grid-cols-2 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="bg-white p-6 hover:bg-gray-50 transition-colors">
+                        <span class="block text-3xl font-bold mb-1">26+</span>
+                        <span class="text-[10px] uppercase font-mono text-gray-400"><span class="lang-en">Global Partners</span><span class="lang-zh">全球合作夥伴</span></span>
+                    </div>
+                    <div class="bg-white p-6 hover:bg-gray-50 transition-colors">
+                        <span class="block text-3xl font-bold mb-1">20K+</span>
+                        <span class="text-[10px] uppercase font-mono text-gray-400"><span class="lang-en">Submission Target</span><span class="lang-zh">作品征集目標</span></span>
+                    </div>
+                    <div class="bg-white p-6 hover:bg-gray-50 transition-colors">
+                        <span class="block text-3xl font-bold mb-1">1M+</span>
+                        <span class="text-[10px] uppercase font-mono text-gray-400"><span class="lang-en">Platform Users</span><span class="lang-zh">平台用戶目標</span></span>
+                    </div>
+                    <div class="bg-white p-6 hover:bg-gray-50 transition-colors">
+                        <span class="block text-3xl font-bold mb-1">19.5%</span>
+                        <span class="text-[10px] uppercase font-mono text-gray-400"><span class="lang-en">Market Growth</span><span class="lang-zh">市場年增長率</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="border-b border-gray-200 py-6 overflow-hidden bg-gray-50">
+        <div class="whitespace-nowrap animate-marquee flex items-center gap-12 opacity-80 text-xs font-mono font-medium uppercase tracking-widest text-black">
+            <span>Submission Services</span> <span>✦</span> <span>Token Services</span> <span>✦</span> <span>Copyright Agency</span> <span>✦</span> <span>Distribution Services</span> <span>✦</span> <span>Agent Certification</span> <span>✦</span>
+            <span>征片服務</span> <span>✦</span> <span>代幣服務</span> <span>✦</span> <span>版權代理</span> <span>✦</span> <span>發行服務</span> <span>✦</span> <span>經紀人認證</span> <span>✦</span>
+            <span>Submission Services</span> <span>✦</span> <span>Token Services</span> <span>✦</span> <span>Copyright Agency</span> <span>✦</span> <span>Distribution Services</span> <span>✦</span> <span>Agent Certification</span> <span>✦</span>
+        </div>
+    </div>
+
+    <!-- 關於我們 -->
+    <section id="about" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto border-b border-gray-200">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+            <div class="md:col-span-4">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6 reveal-text">
+                    <span class="lang-en">What is <br> AIF.Center</span>
+                    <span class="lang-zh">什麼是 <br> AIF.Center</span>
+                </h2>
+                <span class="inline-block px-3 py-1 rounded-full border border-gray-300 text-xs font-mono text-gray-500 uppercase reveal-text delay-100">// The Paradigm Shift</span>
+            </div>
+            <div class="md:col-span-8">
+                <p class="text-xl font-light text-gray-600 mb-12 reveal-text">
+                    <span class="lang-en">AIF.Center serves as the core hub of the Hong Kong AI International Film Festival ecosystem, dedicated to building a global AI native film content submission and distribution system, creating a two-way value flow platform of 'content entry + distribution exit'.</span>
+                    <span class="lang-zh">AIF.Center作為香港AI國際電影節生態系統的核心樞紐，致力於構建全球AI原生影視內容的征集與分發體系，打造'內容入口+分發出口'的雙向價值流動平台。</span>
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal-text">
+                    <div class="p-6 border border-gray-100 bg-gray-50 rounded-lg">
+                        <h4 class="text-xs uppercase tracking-wider text-gray-500 mb-4"><span class="lang-en">Traditional</span><span class="lang-zh">傳統模式</span></h4>
+                        <h3 class="text-2xl font-bold mb-4 line-through decoration-gray-400 decoration-2 text-gray-400"><span class="lang-en">Limited Distribution</span><span class="lang-zh">有限分發</span></h3>
+                        <ul class="text-sm text-gray-500 space-y-3 list-disc pl-4">
+                            <li><span class="lang-en">Geographical limitations</span><span class="lang-zh">地理限制</span></li>
+                            <li><span class="lang-en">High distribution costs</span><span class="lang-zh">分發成本高</span></li>
+                            <li><span class="lang-en">Language and cultural barriers</span><span class="lang-zh">語言和文化障礙</span></li>
+                        </ul>
+                    </div>
+                    <div class="p-6 border border-black bg-black text-white rounded-lg shadow-xl">
+                        <h4 class="text-xs uppercase tracking-wider text-gray-400 mb-4"><span class="lang-en">AI Era</span><span class="lang-zh">AI 時代</span></h4>
+                        <h3 class="text-2xl font-bold mb-4"><span class="lang-en">Global Ecosystem</span><span class="lang-zh">全球生態系統</span></h3>
+                        <ul class="text-sm text-gray-300 space-y-3 list-disc pl-4">
+                            <li><span class="lang-en">Global content distribution</span><span class="lang-zh">全球內容分發</span></li>
+                            <li><span class="lang-en">AI-powered localization</span><span class="lang-zh">AI驅動的本地化</span></li>
+                            <li><span class="lang-en">Cost-effective solutions</span><span class="lang-zh">成本效益解決方案</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 reveal-text">
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="text-3xl mb-4">🔍</div>
+                        <h4 class="font-bold mb-2"><span class="lang-en">Global Submission Hub</span><span class="lang-zh">全球征集樞紐</span></h4>
+                        <p class="text-sm text-gray-600">
+                            <span class="lang-en">Connect global creators, build the largest AI native film content library.</span>
+                            <span class="lang-zh">連接全球創作者，建立最大的AI原生影視內容庫。</span>
                         </p>
                     </div>
-                    
-                    <div class="card p-6 bloodmoon-glow">
-                        <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 gothic-text">元宇宙整合</h3>
-                        <p class="text-gray-400">
-                            構建持續擴展的「德古拉元宇宙」，NFT持有者可在其中擁有虛擬身份、道具和領地。
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="text-3xl mb-4">🔄</div>
+                        <h4 class="font-bold mb-2"><span class="lang-en">Quality Content Filter</span><span class="lang-zh">優質內容篩選器</span></h4>
+                        <p class="text-sm text-gray-600">
+                            <span class="lang-en">Strictly select and certify high-quality AI native film content.</span>
+                            <span class="lang-zh">嚴格甄選和認證高品質AI原生影視內容。</span>
                         </p>
                     </div>
-                    
-                    <div class="card p-6 bloodmoon-glow">
-                        <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                            <i class="fas fa-theater-masks"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 gothic-text">虛擬城堡體驗</h3>
-                        <p class="text-gray-400">
-                            在元宇宙中參與經典場景重現，與角色互動，體驗維多利亞時代的真實恐怖氛圍。
-                        </p>
-                    </div>
-                    
-                    <div class="card p-6 bloodmoon-glow">
-                        <div class="text-red-400 text-4xl mb-4 vampire-bat">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 gothic-text">恐怖創作工坊</h3>
-                        <p class="text-gray-400">
-                            參與AI恐怖創作工作坊，學習如何用現代技術重新詮釋古典恐怖文學。
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="text-3xl mb-4">🛡️</div>
+                        <h4 class="font-bold mb-2"><span class="lang-en">Content Value-Added</span><span class="lang-zh">內容增值平台</span></h4>
+                        <p class="text-sm text-gray-600">
+                            <span class="lang-en">Technical optimization and localization services maximize quality.</span>
+                            <span class="lang-zh">技術優化和本地化服務最大化品質。</span>
                         </p>
                     </div>
                 </div>
@@ -2037,561 +313,590 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="py-16 bg-gradient-to-r from-red-900 to-purple-900">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 gothic-text">加入AI恐怖電影革命</h2>
-                <p class="text-xl text-gray-200 mb-8">
-                    訂閱我們的通訊，獲取獨家NFT發售資訊、收藏品搶先體驗，以及AI生成恐怖電影資產的前沿洞察。
+    <!-- 服務產品體系 -->
+    <section id="services" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto bg-gray-50">
+        <div class="flex justify-between items-end mb-12 reveal-text">
+            <h2 class="text-3xl font-bold tracking-tight"><span class="lang-en">Service Product System</span><span class="lang-zh">服務產品體系</span></h2>
+            <span class="text-xs font-mono text-gray-400">6 Core Services</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 征片服務 -->
+            <div class="group bg-white border border-gray-200 p-8 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text">
+                <div class="text-4xl mb-4">📤</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-gray-600 transition-colors">
+                    <span class="lang-en">Submission Services</span>
+                    <span class="lang-zh">征片服務</span>
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                    <span class="lang-en">Work submission and preliminary screening, technical format checking and conversion, basic information entry and management.</span>
+                    <span class="lang-zh">作品征集和初步篩選，技術格式檢查和轉換，基礎信息錄入和管理。</span>
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-                    <input type="email" placeholder="輸入您的電子郵件" class="bg-white bg-opacity-10 border border-gray-700 text-white rounded-full px-6 py-3 w-full focus:outline-none focus:ring-2 focus:ring-red-400">
-                    <button class="btn-primary px-8 py-3 rounded-full font-medium">
-                        訂閱
+                <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500">
+                    <span class="lang-en">Revenue Sharing: Global Center 60%, City Center 50%, Professional Center 35%</span>
+                    <span class="lang-zh">收益分成：全球中心60%，城市中心50%，專業中心35%</span>
+                </div>
+            </div>
+
+            <!-- 代幣服務 -->
+            <div class="group bg-white border border-gray-200 p-8 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text delay-100">
+                <div class="text-4xl mb-4">🪙</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-gray-600 transition-colors">
+                    <span class="lang-en">Token Services</span>
+                    <span class="lang-zh">代幣服務</span>
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                    <span class="lang-en">Token economic model design, technical architecture planning, compliance solution development, issuance process management.</span>
+                    <span class="lang-zh">代幣經濟模型設計，技術架構規劃，合規方案制定，發行流程管理。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500">
+                    <span class="lang-en">Service Package: Plan services starting from 200,000 RMB</span>
+                    <span class="lang-zh">服務包：方案服務20萬人民幣起</span>
+                </div>
+            </div>
+
+            <!-- 版權代理 -->
+            <div class="group bg-white border border-gray-200 p-8 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text delay-200">
+                <div class="text-4xl mb-4">📄</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-gray-600 transition-colors">
+                    <span class="lang-en">Copyright Agency</span>
+                    <span class="lang-zh">版權代理</span>
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                    <span class="lang-en">Copyright evaluation and pricing, buyer matching and connection, transaction negotiation support, contract management.</span>
+                    <span class="lang-zh">版權評估和定價，買家匹配和對接，交易談判支持，合同管理和執行。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500">
+                    <span class="lang-en">Revenue Sharing: Global Center 35%, City Center 25%, Professional Center 15%</span>
+                    <span class="lang-zh">收益分成：全球中心35%，城市中心25%，專業中心15%</span>
+                </div>
+            </div>
+
+            <!-- 發行服務 -->
+            <div class="group bg-white border border-gray-200 p-8 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text">
+                <div class="text-4xl mb-4">📡</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-gray-600 transition-colors">
+                    <span class="lang-en">Distribution Services</span>
+                    <span class="lang-zh">發行服務</span>
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                    <span class="lang-en">Platform distribution management, channel connection coordination, revenue tracking management, effect analysis report.</span>
+                    <span class="lang-zh">平台分發管理，渠道對接協調，收益追蹤管理，效果分析報告。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500">
+                    <span class="lang-en">Revenue Sharing: Global Center 10%, City Center 8%, Professional Center 5%</span>
+                    <span class="lang-zh">收益分成：全球中心10%，城市中心8%，專業中心5%</span>
+                </div>
+            </div>
+
+            <!-- 征片經紀人認證 -->
+            <div class="group bg-white border border-gray-200 p-8 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text delay-100">
+                <div class="text-4xl mb-4">🏅</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-gray-600 transition-colors">
+                    <span class="lang-en">Agent Certification</span>
+                    <span class="lang-zh">征片經紀人認證</span>
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                    <span class="lang-en">Basic business training, professional skill certification, continuous education support, industry resource connection.</span>
+                    <span class="lang-zh">基礎業務培訓，專業技能認證，持續教育支持，行業資源對接。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500">
+                    <span class="lang-en">Certification Fee: Graded fees from junior to expert certification</span>
+                    <span class="lang-zh">認證費用：初級到專家認證分級收費</span>
+                </div>
+            </div>
+
+            <!-- 參展服務 -->
+            <div class="group bg-white border border-gray-200 p-8 rounded-xl hover:shadow-2xl hover:border-black/10 transition-all duration-500 reveal-text delay-200">
+                <div class="text-4xl mb-4">🎪</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-gray-600 transition-colors">
+                    <span class="lang-en">Exhibition Services</span>
+                    <span class="lang-zh">參展服務</span>
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                    <span class="lang-en">Film festival screening and matching, registration material preparation, on-site support services, follow-up coordination.</span>
+                    <span class="lang-zh">電影節篩選和匹配，報名材料準備，現場支持服務，後續跟進協調。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-500">
+                    <span class="lang-en">Revenue Sharing: Global Center 35%, City Center 25%, Professional Center 15%</span>
+                    <span class="lang-zh">收益分成：全球中心35%，城市中心25%，專業中心15%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 全球征片網絡 -->
+    <section id="network" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-200 pb-8 reveal-text">
+            <div>
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="lang-en">Global Submission Network</span><span class="lang-zh">全球征片網絡</span>
+                </h2>
+                <p class="text-gray-500"><span class="lang-en">Adopting a "Headquarters Center + Partners" Network Structure</span><span class="lang-zh">採用"總部中心+合作夥伴"的網絡架構</span></p>
+            </div>
+            <div class="text-right">
+                <div class="text-4xl font-bold font-mono tracking-tight">3-Tier</div>
+                <div class="text-xs uppercase tracking-widest text-gray-400 mt-1"><span class="lang-en">Network Structure</span><span class="lang-zh">網絡結構</span></div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-gray-200 mb-12 reveal-text">
+            <div class="border-r border-b lg:border-b-0 border-gray-200 p-10 hover:bg-black hover:text-white transition-colors duration-300 group">
+                <span class="text-xs font-mono opacity-50 mb-6 block">01 / Headquarters</span>
+                <h3 class="text-2xl font-bold mb-2"><span class="lang-en">Headquarters Center</span><span class="lang-zh">總部中心</span></h3>
+                <p class="text-xs uppercase tracking-widest opacity-50 mb-8"><span class="lang-en">Hong Kong</span><span class="lang-zh">香港</span></p>
+                <div class="text-5xl font-bold mb-4 font-serif italic">🏢</div>
+                <p class="text-xs opacity-50 leading-relaxed border-t border-current pt-4 group-hover:border-white/20">
+                    <span class="lang-en">Strategy planning and decision making, technology R&D center, content evaluation standards, global business coordination.</span>
+                    <span class="lang-zh">策略規劃與決策制定，技術研發中心，內容評估標準，全球業務協調。</span>
+                </p>
+            </div>
+
+            <div class="border-r border-b lg:border-b-0 border-gray-200 p-10 hover:bg-black hover:text-white transition-colors duration-300 group">
+                <span class="text-xs font-mono opacity-50 mb-6 block">02 / Global</span>
+                <h3 class="text-2xl font-bold mb-2"><span class="lang-en">Global Center</span><span class="lang-zh">全球中心</span></h3>
+                <p class="text-xs uppercase tracking-widest opacity-50 mb-8"><span class="lang-en">Strategic Partner</span><span class="lang-zh">戰略合作夥伴</span></p>
+                <div class="text-5xl font-bold mb-4 font-serif italic">🌍</div>
+                <p class="text-xs opacity-50 leading-relaxed border-t border-current pt-4 group-hover:border-white/20">
+                    <span class="lang-en">Global business authorization, complete service product system, can develop city centers, participate in strategic decisions.</span>
+                    <span class="lang-zh">全球範圍業務授權，完整服務產品體系，可發展城市中心，參與戰略決策。</span>
+                </p>
+            </div>
+
+            <div class="p-10 hover:bg-black hover:text-white transition-colors duration-300 group">
+                <span class="text-xs font-mono opacity-50 mb-6 block">03 / City</span>
+                <h3 class="text-2xl font-bold mb-2"><span class="lang-en">City Center</span><span class="lang-zh">城市中心</span></h3>
+                <p class="text-xs uppercase tracking-widest opacity-50 mb-8"><span class="lang-en">Regional Core</span><span class="lang-zh">區域核心</span></p>
+                <div class="text-5xl font-bold mb-4 font-serif italic">🏙️</div>
+                <p class="text-xs opacity-50 leading-relaxed border-t border-current pt-4 group-hover:border-white/20">
+                    <span class="lang-en">Designated regional business authorization, all business rights in the region, can develop professional centers.</span>
+                    <span class="lang-zh">指定區域業務授權，區域全部業務權限，可發展專業中心。</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 pt-8 reveal-text">
+            <div>
+                <h4 class="font-bold text-sm mb-6 pb-2 border-b border-gray-200 uppercase tracking-wider"><span class="lang-en">Investment Scale</span><span class="lang-zh">投資規模</span></h4>
+                <ul class="space-y-4">
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Global Center</span><span class="lang-zh">全球中心</span></span>
+                        <span class="font-mono text-gray-400">1M RMB/3y</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">City Center</span><span class="lang-zh">城市中心</span></span>
+                        <span class="font-mono text-gray-400">300K RMB/3y</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Professional Center</span><span class="lang-zh">專業中心</span></span>
+                        <span class="font-mono text-gray-400">150K RMB/3y</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm mb-6 pb-2 border-b border-gray-200 uppercase tracking-wider"><span class="lang-en">Review Process</span><span class="lang-zh">評審流程</span></h4>
+                <ul class="space-y-4">
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">AI Assisted Preliminary Screening</span><span class="lang-zh">AI輔助初篩</span></span>
+                        <span class="font-mono text-gray-400">🔍</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Partner Preliminary Review</span><span class="lang-zh">合作夥伴初審</span></span>
+                        <span class="font-mono text-gray-400">👥</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Regional Center Review</span><span class="lang-zh">區域中心複審</span></span>
+                        <span class="font-mono text-gray-400">🏛️</span>
+                    </li>
+                    <li class="flex justify-between items-center text-sm group">
+                        <span class="text-gray-700 group-hover:text-black font-medium"><span class="lang-en">Headquarters Final Review</span><span class="lang-zh">總部終審</span></span>
+                        <span class="font-mono text-gray-400">✅</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 生態系統整合 -->
+    <section id="ecosystem" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto bg-gray-50 border-t border-gray-200">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div class="reveal-text">
+                <h2 class="text-3xl font-bold mb-12"><span class="lang-en">Integrated Ecosystem</span><span class="lang-zh">整合式生態系統</span></h2>
+                
+                <div class="relative pl-8 border-l border-gray-200 space-y-12">
+                    <div class="relative">
+                        <span class="absolute -left-[37px] top-1 w-4 h-4 bg-black rounded-full border-2 border-white shadow-md"></span>
+                        <h4 class="text-sm font-bold uppercase mb-1"><span class="lang-en">AIF.Center</span><span class="lang-zh">AIF.Center</span></h4>
+                        <p class="text-xs text-gray-400 font-mono mb-2">Core Hub</p>
+                        <p class="text-sm text-gray-600"><span class="lang-en">Global submission and distribution center for AI native films, connecting creators with global audiences.</span><span class="lang-zh">AI原生影視的全球征集與分發中心，連接創作者與全球觀眾。</span></p>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute -left-[37px] top-1 w-4 h-4 bg-gray-300 rounded-full border-2 border-white"></span>
+                        <h4 class="text-sm font-bold uppercase mb-1 text-gray-500"><span class="lang-en">AI International Film Festival</span><span class="lang-zh">AI國際電影節</span></h4>
+                        <p class="text-xs text-gray-400 font-mono mb-2">Recognition Platform</p>
+                        <p class="text-sm text-gray-500"><span class="lang-en">International screening competition and recognition platform for AI native films.</span><span class="lang-zh">AI原生影視的國際放映競賽與認可平台。</span></p>
+                    </div>
+                     <div class="relative">
+                        <span class="absolute -left-[37px] top-1 w-4 h-4 bg-gray-200 rounded-full border-2 border-white"></span>
+                        <h4 class="text-sm font-bold uppercase mb-1 text-gray-400"><span class="lang-en">AI Film Academy</span><span class="lang-zh">AI電影學院</span></h4>
+                        <p class="text-xs text-gray-400 font-mono mb-2">Education</p>
+                        <p class="text-sm text-gray-400"><span class="lang-en">Professional education and talent cultivation program for AI film creation.</span><span class="lang-zh">AI電影創作的專業教育與人才培養計劃。</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 rounded-2xl border border-gray-200 shadow-sm reveal-text delay-100">
+                <h3 class="text-lg font-bold mb-8"><span class="lang-en">Platform Distribution Channels</span><span class="lang-zh">平台分發渠道</span></h3>
+                
+                <div class="space-y-6 mb-8">
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold"><span class="lang-en">AIF Online Cinema</span><span class="lang-zh">AIF在線影院</span></h4>
+                            <span class="font-mono text-gray-500">🎬</span>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><span class="lang-en">• 4K/8K HD streaming playback</span><span class="lang-zh">• 4K/8K高清流媒體播放</span></li>
+                            <li><span class="lang-en">• 100+ language subtitles and dubbing</span><span class="lang-zh">• 100+語言字幕和配音</span></li>
+                            <li><span class="lang-en">• AI personalized content recommendation</span><span class="lang-zh">• AI個性化內容推薦</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border border-gray-300 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold"><span class="lang-en">AIF Mobile App</span><span class="lang-zh">AIF移動應用</span></h4>
+                            <span class="font-mono text-gray-500">📱</span>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><span class="lang-en">• iOS/Android/HarmonyOS</span><span class="lang-zh">• iOS/Android/HarmonyOS</span></li>
+                            <li><span class="lang-en">• AI native short video streaming</span><span class="lang-zh">• AI原生短視頻流</span></li>
+                            <li><span class="lang-en">• One-click sharing to social platforms</span><span class="lang-zh">• 一鍵分享到社交平台</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border border-yellow-400 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold"><span class="lang-en">AIF Metaverse Space</span><span class="lang-zh">AIF元宇宙空間</span></h4>
+                            <span class="font-mono text-gray-500">🌐</span>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><span class="lang-en">• VR/AR immersive viewing experience</span><span class="lang-zh">• VR/AR沉浸式觀影</span></li>
+                            <li><span class="lang-en">• Multi-person shared viewing experience</span><span class="lang-zh">• 多人共享觀影體驗</span></li>
+                            <li><span class="lang-en">• Virtual director meetings</span><span class="lang-zh">• 虛擬導演見面會</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button class="w-full bg-black text-white py-4 rounded-full font-bold academy-btn">
+                    <span class="lang-en">Explore Ecosystem</span><span class="lang-zh">探索生態系統</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作夥伴計劃 -->
+    <section id="partners" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto">
+        <div class="mb-16 reveal-text text-center">
+            <h2 class="text-4xl font-bold mb-6">
+                <span class="lang-en">Strategic Partnership Program</span>
+                <span class="lang-zh">策略性合作夥伴計劃</span>
+            </h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">
+                <span class="lang-en">Join our global ecosystem, become a strategic partner, and open unprecedented opportunities in the AI film industry revolution</span>
+                <span class="lang-zh">加入我們的全球生態系統，成為策略合作夥伴，在AI電影產業革命中開啟前所未有的機會</span>
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal-text">
+            <!-- 電影節夥伴 -->
+            <div class="p-8 bg-white border border-gray-200 rounded-xl hover:bg-black hover:text-white transition-all duration-300 group">
+                <div class="text-4xl mb-4">🏆</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-white">
+                    <span class="lang-en">Film Festival Partners</span>
+                    <span class="lang-zh">電影節夥伴</span>
+                </h3>
+                <p class="text-sm leading-relaxed opacity-70 group-hover:text-gray-300">
+                    <span class="lang-en">Content exchange program, joint screening events, shared review resources, joint brand activities.</span>
+                    <span class="lang-zh">內容交換計劃，聯合放映活動，共享評審資源，聯合品牌活動。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-current opacity-50 text-xs">
+                    <span class="lang-en">Global Network Collaboration</span>
+                    <span class="lang-zh">全球網絡協作</span>
+                </div>
+            </div>
+
+            <!-- 技術夥伴 -->
+            <div class="p-8 bg-white border border-gray-200 rounded-xl hover:bg-black hover:text-white transition-all duration-300 group">
+                <div class="text-4xl mb-4">💻</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-white">
+                    <span class="lang-en">Technology Partners</span>
+                    <span class="lang-zh">技術夥伴</span></h3>
+                <p class="text-sm leading-relaxed opacity-70 group-hover:text-gray-300">
+                    <span class="lang-en">AI technology integration, computing power support services, joint R&D programs, technical standard development.</span>
+                    <span class="lang-zh">AI技術整合，算力支持服務，聯合研發計劃，技術標準開發。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-current opacity-50 text-xs">
+                    <span class="lang-en">Innovation Lab Cooperation</span>
+                    <span class="lang-zh">創新實驗室合作</span>
+                </div>
+            </div>
+
+            <!-- 媒體夥伴 -->
+            <div class="p-8 bg-white border border-gray-200 rounded-xl hover:bg-black hover:text-white transition-all duration-300 group">
+                <div class="text-4xl mb-4">📺</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-white">
+                    <span class="lang-en">Media Partners</span>
+                    <span class="lang-zh">媒體夥伴</span>
+                </h3>
+                <p class="text-sm leading-relaxed opacity-70 group-hover:text-gray-300">
+                    <span class="lang-en">Content distribution rights, exclusive premiere opportunities, joint production projects, audience data sharing.</span>
+                    <span class="lang-zh">內容分發權限，獨家首映機會，聯合製作項目，觀眾數據共享。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-current opacity-50 text-xs">
+                    <span class="lang-en">Brand Joint Promotion</span>
+                    <span class="lang-zh">品牌聯合推廣</span>
+                </div>
+            </div>
+
+            <!-- 服務夥伴 -->
+            <div class="p-8 bg-white border border-gray-200 rounded-xl hover:bg-black hover:text-white transition-all duration-300 group">
+                <div class="text-4xl mb-4">🤝</div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-white">
+                    <span class="lang-en">Service Partners</span>
+                    <span class="lang-zh">服務夥伴</span>
+                </h3>
+                <p class="text-sm leading-relaxed opacity-70 group-hover:text-gray-300">
+                    <span class="lang-en">Localization services, legal and compliance support, marketing expertise, technology integration services.</span>
+                    <span class="lang-zh">本地化服務，法律與合規支持，營銷專業知識，技術整合服務。</span>
+                </p>
+                <div class="mt-4 pt-4 border-t border-current opacity-50 text-xs">
+                    <span class="lang-en">Market Expansion Support</span>
+                    <span class="lang-zh">市場拓展支持</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12 reveal-text">
+            <button class="bg-black text-white px-8 py-3 rounded-full font-bold academy-btn">
+                <span class="lang-en">Become Partner</span><span class="lang-zh">成為合作夥伴</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- 聯繫我們 -->
+    <section id="contact" class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto bg-gray-50 border-t border-gray-200">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div class="reveal-text">
+                <h2 class="text-3xl font-bold mb-12"><span class="lang-en">Contact Us</span><span class="lang-zh">聯繫我們</span></h2>
+                
+                <div class="space-y-8">
+                    <div class="p-6 bg-white rounded-lg border border-gray-200">
+                        <h4 class="font-bold mb-2"><span class="lang-en">Global Headquarters</span><span class="lang-zh">全球總部</span></h4>
+                        <p class="text-sm text-gray-600">
+                            <span class="lang-en">Hong Kong Science Park, Sha Tin, Hong Kong</span>
+                            <span class="lang-zh">香港科學園, 沙田, 香港</span>
+                        </p>
+                        <p class="text-sm text-gray-600 mt-2">info@aif.center</p>
+                        <p class="text-sm text-gray-600">www.aif.center</p>
+                    </div>
+                    
+                    <div class="p-6 bg-white rounded-lg border border-gray-200">
+                        <h4 class="font-bold mb-2"><span class="lang-en">Professional Service Contacts</span><span class="lang-zh">專業服務聯繫</span></h4>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <div>
+                                <strong><span class="lang-en">Partnership Consultation:</span><span class="lang-zh">合作夥伴諮詢:</span></strong>
+                                <span>partners@aif.center</span>
+                            </div>
+                            <div>
+                                <strong><span class="lang-en">Submission Consultation:</span><span class="lang-zh">征片諮詢:</span></strong>
+                                <span>submissions@aif.center</span>
+                            </div>
+                            <div>
+                                <strong><span class="lang-en">Technical Support:</span><span class="lang-zh">技術支持:</span></strong>
+                                <span>tech@aif.center</span>
+                            </div>
+                            <div>
+                                <strong><span class="lang-en">Media Contact:</span><span class="lang-zh">媒體聯繫:</span></strong>
+                                <span>media@aif.center</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 rounded-2xl border border-gray-200 shadow-sm reveal-text delay-100">
+                <h3 class="text-lg font-bold mb-8"><span class="lang-en">Get Started Now</span><span class="lang-zh">立即開始</span></h3>
+                
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2"><span class="lang-en">Full Name</span><span class="lang-zh">全名</span></label>
+                        <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" placeholder="Your full name">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2"><span class="lang-en">Email</span><span class="lang-zh">電子郵箱</span></label>
+                        <input type="email" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" placeholder="your@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2"><span class="lang-en">Project Type</span><span class="lang-zh">項目類型</span></label>
+                        <select class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black">
+                            <option><span class="lang-en">Film Submission</span><span class="lang-zh">電影提交</span></option>
+                            <option><span class="lang-en">Distribution Service</span><span class="lang-zh">分發服務</span></option>
+                            <option><span class="lang-en">Partnership Consultation</span><span class="lang-zh">合作夥伴諮詢</span></option>
+                            <option><span class="lang-en">Investment Opportunity</span><span class="lang-zh">投資機會</span></option>
+                            <option><span class="lang-en">Technical Consultation</span><span class="lang-zh">技術諮詢</span></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2"><span class="lang-en">Message</span><span class="lang-zh">訊息</span></label>
+                        <textarea rows="4" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black" placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-black text-white py-4 rounded-full font-bold academy-btn">
+                        <span class="lang-en">Send Message</span><span class="lang-zh">發送訊息</span>
                     </button>
-                </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 px-6 md:px-8 max-w-[1920px] mx-auto border-t border-gray-200">
+        <div class="max-w-3xl mx-auto text-center reveal-text">
+            <h2 class="text-4xl font-bold mb-6">
+                <span class="lang-en">Start Your AI Film Journey Now</span>
+                <span class="lang-zh">立即開始您的AI電影之旅</span>
+            </h2>
+            <p class="text-xl text-gray-500 mb-8">
+                <span class="lang-en">Join the global AI film revolution. Contact our experts to learn how AIF.Center can spread your creative vision globally.</span>
+                <span class="lang-zh">加入全球AI電影革命。聯繫我們的專家，了解AIF.Center如何將您的創意願景傳播到全球。</span>
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#submit" class="bg-black text-white px-8 py-4 rounded-full font-bold academy-btn text-center inline-flex items-center justify-center">
+                    <span class="lang-en">Submit Your Work</span>
+                    <span class="lang-zh">提交您的作品</span>
+                </a>
+                <a href="#contact" class="border border-black text-black px-8 py-4 rounded-full font-bold text-center inline-flex items-center justify-center hover:bg-black hover:text-white transition-all">
+                    <span class="lang-en">Contact Us</span>
+                    <span class="lang-zh">聯繫我們</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <a href="#" class="dracula-logo mb-4">
-                        <div class="logo-font">德古拉：永恆暗夜</div>
-                        <div class="logo-sub">吸血鬼傳奇數位宇宙</div>
-                    </a>
-                    <p class="text-gray-400 mb-4">
-                        透過AI與區塊鏈技術，重塑128年吸血鬼文學經典。
+    <footer class="bg-black text-white pt-24 pb-8 px-6 md:px-8">
+        <div class="max-w-[1920px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-white/20 pt-12">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#" class="text-2xl font-bold block mb-4">AIF.CENTER</a>
+                    <p class="text-gray-400 text-sm max-w-xs leading-relaxed">
+                        <span class="lang-en">The world's first AI native film submission and distribution comprehensive platform, connecting creators with global audiences through innovative technology.</span>
+                        <span class="lang-zh">全球首個AI原生影視征集與分發綜合平台，通過創新技術將創作者與全球觀眾連接起來。</span>
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-red-400"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-red-400"><i class="fab fa-telegram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-red-400"><i class="fab fa-discord"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-red-400"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
+                
                 <div>
-                    <h3 class="text-lg font-semibold mb-4 gothic-text">平台</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-red-400">關於項目</a></li>
-                        <li><a href="#cultural" class="text-gray-400 hover:text-red-400">文化價值</a></li>
-                        <li><a href="#nft" class="text-gray-400 hover:text-red-400">NFT系列</a></li>
-                        <li><a href="#technology" class="text-gray-400 hover:text-red-400">AI技術</a></li>
-                        <li><a href="#experience" class="text-gray-400 hover:text-red-400">觀影體驗</a></li>
-                        <li><a href="#community" class="text-gray-400 hover:text-red-400">社群</a></li>
+                    <h4 class="text-xs font-bold uppercase tracking-wider mb-4 text-gray-500">Service Products</h4>
+                    <ul class="space-y-3 text-sm font-medium text-gray-300">
+                        <li><a href="#services" class="hover:text-white"><span class="lang-en">Submission Services</span><span class="lang-zh">征片服務</span></a></li>
+                        <li><a href="#services" class="hover:text-white"><span class="lang-en">Token Services</span><span class="lang-zh">代幣服務</span></a></li>
+                        <li><a href="#services" class="hover:text-white"><span class="lang-en">Copyright Agency</span><span class="lang-zh">版權代理</span></a></li>
+                        <li><a href="#services" class="hover:text-white"><span class="lang-en">Distribution Services</span><span class="lang-zh">發行服務</span></a></li>
+                        <li><a href="#services" class="hover:text-white"><span class="lang-en">Agent Certification</span><span class="lang-zh">經紀人認證</span></a></li>
+                        <li><a href="#services" class="hover:text-white"><span class="lang-en">Exhibition Services</span><span class="lang-zh">參展服務</span></a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h3 class="text-lg font-semibold mb-4 gothic-text">資源</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">項目白皮書</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">使用指南</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">常見問題</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">技術支援</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">哥特文化背景</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">學術研究</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4 gothic-text">法律聲明</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">服務條款</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">隱私政策</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">版權聲明</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">聯絡我們</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">免責聲明</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400">收藏指南</a></li>
+                    <h4 class="text-xs font-bold uppercase tracking-wider mb-4 text-gray-500">Resources</h4>
+                    <ul class="space-y-3 text-sm font-medium text-gray-300">
+                        <li><a href="#" class="hover:text-white"><span class="lang-en">Documentation</span><span class="lang-zh">文檔</span></a></li>
+                        <li><a href="#" class="hover:text-white"><span class="lang-en">White Paper</span><span class="lang-zh">白皮書</span></a></li>
+                        <li><a href="#" class="hover:text-white"><span class="lang-en">Case Studies</span><span class="lang-zh">案例研究</span></a></li>
+                        <li><a href="#" class="hover:text-white"><span class="lang-en">Help Center</span><span class="lang-zh">幫助中心</span></a></li>
+                        <li><a href="#contact" class="hover:text-white"><span class="lang-en">Contact Support</span><span class="lang-zh">聯繫支持</span></a></li>
+                        <li><a href="#" class="hover:text-white"><span class="lang-en">Compliance Policy</span><span class="lang-zh">合規政策</span></a></li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-                <p>© 2025 《德古拉：永恆暗夜》AI原生電影項目。保留所有權利。</p>
-                <p class="mt-2">本網站展示的NFT為數位收藏品，純屬文化藝術收藏用途。請謹慎收藏，了解相關特性。</p>
+            
+            <div class="mt-20 flex justify-between items-end text-[10px] uppercase text-gray-500 font-mono">
+                <p>&copy; 2025 Hong Kong AI International Film Festival Association Limited. All Rights Reserved.</p>
+                <p>Designed with Awwwards Aesthetics</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // NFT data with detailed information
-        const nftData = {
-            1: {
-                name: "德古拉伯爵NFT",
-                type: "黑暗領主層級",
-                category: "頂級收藏",
-                count: "限量666枚",
-                price: "¥19,999",
-                icon: "fas fa-crown",
-                description: "動態生成的60-120秒視頻藝術品，融合哥特美學與現代數字藝術。持有者可參與DAO核心治理，擁有NFT形象完整商業使用權，並在電影片頭獲得署名權。這是德古拉宇宙中的最高等級收藏品，象徵著吸血鬼貴族的至高權力與永恆詛咒。",
-                features: [
-                    "參與項目重大決策投票，包括續集製作、IP授權等",
-                    "與主創團隊及恐怖文學顧問的私人交流會",
-                    "專屬虛擬城堡觀影廳，可邀請最多13人同時觀看",
-                    "可要求AI生成個人專屬的《德古拉》角色形象",
-                    "獨家幕後製作資料與AI技術解析",
-                    "未來所有衍生作品的優先體驗權"
-                ]
-            },
-            2: {
-                name: "德古拉的誓約之戒",
-                type: "黑暗聖物系列",
-                category: "互動道具",
-                count: "限量6,666枚",
-                price: "¥1,999",
-                icon: "fas fa-ring",
-                description: "3D互動場景，360度觀察體驗，象徵永恆詛咒的關鍵道具。這枚戒指承載著德古拉伯爵與黑暗力量的永恆契約，是血月NFT合成的必備材料。戒指表面刻有古老的拉丁文咒語，散發著神秘的紅色光芒。",
-                features: [
-                    "360度3D互動觀察體驗，可查看戒指的每個細節",
-                    "血月NFT合成的必備材料之一",
-                    "永恆詛咒主題的文化象徵",
-                    "支持跨平台展示和使用",
-                    "獨特的拉丁文咒語刻印動畫效果",
-                    "可在虛擬城堡中作為身份象徵佩戴"
-                ]
-            },
-            3: {
-                name: "吸血鬼的銀質十字架",
-                type: "黑暗聖物系列",
-                category: "神聖遺物",
-                count: "限量13,333枚",
-                price: "¥299",
-                icon: "fas fa-cross",
-                description: "高保真3D物品動畫，神聖與邪惡對抗的物理模擬效果，救贖主題的視覺表現。這件十字架見證了無數次正邪對抗，表面的銀光既能傷害吸血鬼，也是人類最後的希望象徵。",
-                features: [
-                    "高保真3D物理模擬效果",
-                    "神聖光芒與黑暗對抗的視覺呈現",
-                    "救贖與墮落主題的深度表現",
-                    "動態聖光效果展示",
-                    "宗教文化背景的詳細解析",
-                    "可在恐怖場景中作為護身符使用"
-                ]
-            },
-            4: {
-                name: "范海辛的聖水",
-                type: "黑暗聖物系列",
-                category: "驅魔道具",
-                count: "限量13,333枚",
-                price: "¥599",
-                icon: "fas fa-flask",
-                description: "神秘發光脈動效果，驅魔聖水細節還原，正邪對抗的藝術表達。這瓶聖水是范海辛教授親自調製的驅魔聖品，每一滴都蘊含著對抗黑暗力量的神聖能量。",
-                features: [
-                    "神秘發光脈動特效，展現聖水的神聖力量",
-                    "驅魔功效的科學與神學解析",
-                    "范海辛教授的學術研究背景故事",
-                    "正邪對抗的哲學思辨",
-                    "古老拉丁祈禱詞的音效伴隨",
-                    "可在VR模式中體驗驅魔儀式"
-                ]
-            },
-            5: {
-                name: "德古拉城堡的鑰匙",
-                type: "黑暗聖物系列",
-                category: "神秘鑰匙",
-                count: "限量13,333枚",
-                price: "¥899",
-                icon: "fas fa-key",
-                description: "古老金屬光澤特效技術，開啟黑暗之門主題，維多利亞時代工藝展示。這把鑰匙能夠開啟德古拉城堡中最神秘的房間，每一個齒輪都雕刻著古老的魔法符文。",
-                features: [
-                    "古老金屬工藝的精密還原",
-                    "開啟城堡秘密房間的象徵意義",
-                    "維多利亞時代鑰匙製作工藝展示",
-                    "魔法符文的神秘力量解析",
-                    "城堡建築歷史的深度探索",
-                    "可解鎖專屬城堡區域的虛擬體驗"
-                ]
-            },
-            6: {
-                name: "露西的十字項鍊",
-                type: "黑暗聖物系列",
-                category: "愛情遺物",
-                count: "限量13,333枚",
-                price: "¥699",
-                icon: "fas fa-gem",
-                description: "純潔光輝環繞設計，愛情與救贖場景營造，犧牲精神的哲學思考。這條項鍊是露西純潔靈魂的象徵，即使在最黑暗的時刻也散發著希望的光芒。",
-                features: [
-                    "純潔光輝的溫暖視覺效果",
-                    "愛情與救贖的深刻主題表達",
-                    "露西角色的悲劇美學展現",
-                    "犧牲精神的哲學思考",
-                    "維多利亞時代珠寶工藝復現",
-                    "情感共鳴的音樂伴隨效果"
-                ]
-            },
-            7: {
-                name: "米娜的日記",
-                type: "黑暗聖物系列",
-                category: "心靈記錄",
-                count: "限量6,000枚",
-                price: "¥1,299",
-                icon: "fas fa-book",
-                description: "古典書頁翻動效果，心理恐怖主題表達，維多利亞時代女性覺醒。這本日記記錄了米娜從純真到覺醒的心路歷程，每一頁都透露著時代變遷的痕跡。",
-                features: [
-                    "逼真的書頁翻動動畫效果",
-                    "心理恐怖的細膩表達",
-                    "維多利亞時代女性覺醒的歷史意義",
-                    "古典書法與現代AI技術的結合",
-                    "角色內心世界的深度探索",
-                    "可閱讀日記內容的互動功能"
-                ]
-            },
-            8: {
-                name: "德古拉伯爵（角色）",
-                type: "暗夜角色系列",
-                category: "主角收藏",
-                count: "限量6,666枚",
-                price: "¥1,999",
-                icon: "fas fa-user-tie",
-                description: "AI動態肖像技術，黑暗魅力主題表達，支持PFP頭像使用。德古拉伯爵是永恆的黑暗貴族，擁有無與倫比的魅力與力量。這個NFT角色具備完整的AI人格，可與持有者進行深度對話，分享數百年的智慧與黑暗秘密。",
-                features: [
-                    "AI動態肖像生成技術，表情豐富生動",
-                    "支持PFP頭像使用，展現貴族身份",
-                    "與德古拉伯爵AI進行深度哲學對話",
-                    "以伯爵視角觀看電影的獨特體驗",
-                    "獲得德古拉專屬社群的最高權限",
-                    "個性化劇情生成，探索角色的內心世界"
-                ]
-            },
-            9: {
-                name: "米娜·哈克",
-                type: "暗夜角色系列",
-                category: "女主角收藏",
-                count: "限量8,888枚",
-                price: "¥1,299",
-                icon: "fas fa-female",
-                description: "純潔與墮落的雙重形象，心理轉變過程展現，維多利亞女性代表。米娜是智慧與勇氣的化身，她在面對超自然威脅時展現出的堅強意志，成為了女性力量的象徵。",
-                features: [
-                    "純潔與墮落的雙重人格展現",
-                    "心理轉變過程的細膩刻畫",
-                    "維多利亞時代新女性的代表",
-                    "智慧與勇氣並存的角色特質",
-                    "與米娜AI探討女性覺醒話題",
-                    "體驗女性視角下的恐怖與救贖"
-                ]
-            },
-            10: {
-                name: "范海辛教授",
-                type: "暗夜角色系列",
-                category: "學者英雄",
-                count: "限量13,333枚",
-                price: "¥899",
-                icon: "fas fa-user-graduate",
-                description: "正義使者象徵，科學與迷信的結合，驅魔專家的藝術呈現。范海辛教授代表著理性與信仰的完美結合，用科學方法對抗超自然威脅。",
-                features: [
-                    "正義使者的崇高形象展現",
-                    "科學與神學的完美融合",
-                    "驅魔知識與技術的深度解析",
-                    "學者風範與英雄氣概並存",
-                    "與教授AI探討超自然現象",
-                    "學習古老的驅魔儀式與知識"
-                ]
-            },
-            11: {
-                name: "露西·韋斯滕拉",
-                type: "暗夜角色系列",
-                category: "悲劇美人",
-                count: "限量13,333枚",
-                price: "¥699",
-                icon: "fas fa-heart-broken",
-                description: "悲劇美學代表，純真與誘惑的對比，吸血鬼轉化的深度表現。露西的悲劇命運體現了純真與邪惡的永恆對抗，她的轉變過程是整個故事最令人心痛的部分。",
-                features: [
-                    "悲劇美學的完美詮釋",
-                    "純真與誘惑的強烈對比",
-                    "吸血鬼轉化過程的心理描寫",
-                    "維多利亞時代女性的命運悲歌",
-                    "與露西AI體驗純真與墮落的內心掙扎",
-                    "探索友誼與愛情在恐怖中的力量"
-                ]
-            },
-            12: {
-                name: "約翰·哈克",
-                type: "暗夜角色系列",
-                category: "普通英雄",
-                count: "限量13,333枚",
-                price: "¥599",
-                icon: "fas fa-male",
-                description: "恐懼與勇氣的化身，普通人面對超自然的反應，維多利亞時代男性形象。約翰·哈克代表著普通人在面對不可思議威脅時的勇氣與恐懼。",
-                features: [
-                    "普通人英雄主義的真實展現",
-                    "恐懼與勇氣的心理層次分析",
-                    "維多利亞時代男性的責任擔當",
-                    "面對超自然威脅的人性反應",
-                    "與哈克AI體驗普通人的英雄之路",
-                    "探討愛情與責任在危機中的選擇"
-                ]
-            },
-            13: {
-                name: "雷恩菲爾德",
-                type: "暗夜角色系列",
-                category: "瘋狂僕從",
-                count: "限量13,333枚",
-                price: "¥499",
-                icon: "fas fa-user-ninja",
-                description: "瘋狂與忠誠的矛盾，精神控制主題，黑暗僕從的悲劇。雷恩菲爾德是德古拉影響下的悲劇人物，他的瘋狂中隱含著對自由的渴望。",
-                features: [
-                    "瘋狂與理智邊緣的複雜心理",
-                    "精神控制與自由意志的哲學探討",
-                    "忠誠與背叛的道德衝突",
-                    "黑暗僕從的悲劇命運",
-                    "與雷恩菲爾德AI探索瘋狂的智慧",
-                    "體驗被控制與追求自由的內心掙扎"
-                ]
-            },
-            14: {
-                name: "德古拉的新娘們",
-                type: "暗夜角色系列",
-                category: "黑暗姐妹",
-                count: "限量18,667枚",
-                price: "¥399",
-                icon: "fas fa-users",
-                description: "三位新娘的不同特色，誘惑與危險的完美結合，集體與個體的藝術展現。德古拉的三位新娘代表著不同類型的黑暗誘惑，她們既是受害者也是加害者。",
-                features: [
-                    "三位新娘各具特色的個性展現",
-                    "誘惑與危險的完美平衡",
-                    "集體意識與個體差異的對比",
-                    "吸血鬼女性的多元化詮釋",
-                    "與新娘們AI體驗不同的黑暗魅力",
-                    "探索永恆生命中的愛情與孤獨"
-                ]
-            },
-            15: {
-                name: "血月NFT",
-                type: "合成系列",
-                category: "獨特藝術",
-                count: "理論上限30,000枚",
-                price: "合成獲得",
-                icon: "fas fa-moon",
-                description: "由黑暗聖物NFT + 暗夜角色NFT合成，每個都是獨一無二的30-60秒AI恐怖電影短片。血月NFT代表著黑暗力量的完全覺醒，是德古拉宇宙中最稀有的收藏品。",
-                features: [
-                    "獨一無二的AI恐怖電影短片",
-                    "通縮機制增加稀缺性與收藏價值",
-                    "合成過程永久鎖定原NFT",
-                    "更高級別的社群權限與特殊待遇",
-                    "血月之夜的神秘力量體驗",
-                    "解鎖隱藏劇情與秘密場景"
-                ]
-            },
-            16: {
-                name: "暗夜通行證NFT",
-                type: "大眾層級",
-                category: "觀影通行證",
-                count: "限量33,333枚",
-                price: "¥99",
-                icon: "fas fa-ticket-alt",
-                description: "120分鐘AI恐怖電影一次性觀看權，消耗型NFT，使用即消耗。這是進入德古拉永恆暗夜世界的入門門票，為大眾提供了體驗AI恐怖電影的機會。",
-                features: [
-                    "120分鐘完整恐怖電影觀看權",
-                    "一次性消耗型NFT，稀缺性保證",
-                    "未來續集與衍生作品優先購買權",
-                    "恐怖文化愛好者社群基礎準入",
-                    "電影觀看記錄與成就系統",
-                    "參與社群討論與文化交流"
-                ]
-            }
-        };
-        
-        // Add random data streams
-        function createDataStreams() {
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    const stream = document.createElement('div');
-                    stream.className = 'data-stream';
-                    stream.style.left = Math.random() * 100 + '%';
-                    stream.style.animationDelay = Math.random() * 2 + 's';
-                    document.body.appendChild(stream);
-                    
-                    // Remove after animation
-                    setTimeout(() => {
-                        stream.remove();
-                    }, 4000);
-                }, i * 3000);
-            }
+        // Language Toggle
+        function toggleLanguage() {
+            const body = document.body;
+            const currentLang = body.getAttribute('data-lang');
+            const newLang = currentLang === 'en' ? 'zh' : 'en';
+            body.setAttribute('data-lang', newLang);
+            localStorage.setItem('preferredLanguage', newLang);
         }
-        
-        // Initialize
+
+        // Intersection Observer for Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Initialize on DOM Load
         document.addEventListener('DOMContentLoaded', function() {
-            // Start data streams
-            createDataStreams();
-            setInterval(createDataStreams, 15000);
-            
-            // Add scroll animations
-            const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        if (entry.target.classList.contains('animate-slide-up')) {
-                            entry.target.style.transform = 'translateY(0)';
-                        }
-                        if (entry.target.classList.contains('animate-slide-right')) {
-                            entry.target.style.transform = 'translateX(0)';
-                        }
-                        if (entry.target.classList.contains('animate-fade-in')) {
-                            entry.target.style.transform = 'scale(1)';
-                        }
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                if (el.classList.contains('animate-slide-up')) {
-                    el.style.transform = 'translateY(50px)';
-                }
-                if (el.classList.contains('animate-slide-right')) {
-                    el.style.transform = 'translateX(-50px)';
-                }
-                if (el.classList.contains('animate-fade-in')) {
-                    el.style.transform = 'scale(0.95)';
-                }
+            // Set language from localStorage
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                document.body.setAttribute('data-lang', savedLang);
+            }
+
+            // Observe all reveal elements
+            document.querySelectorAll('.reveal-text').forEach(el => {
                 observer.observe(el);
             });
-            
+
             // Mobile menu functionality
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const mobileMenu = document.querySelector('.mobile-menu');
             const mobileMenuClose = document.querySelector('.mobile-menu-close');
             
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            });
-            
-            mobileMenuClose.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = 'auto';
-            });
-            
-            // Filter functionality
-            const filterPills = document.querySelectorAll('.filter-pill');
-            const nftItems = document.querySelectorAll('.nft-item');
-            
-            filterPills.forEach(pill => {
-                pill.addEventListener('click', () => {
-                    // Remove active class from all pills
-                    filterPills.forEach(p => p.classList.remove('active'));
-                    // Add active class to clicked pill
-                    pill.classList.add('active');
-                    
-                    const filter = pill.getAttribute('data-filter');
-                    
-                    nftItems.forEach(item => {
-                        const category = item.getAttribute('data-category');
-                        if (filter === 'all' || category === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
+            if (mobileMenuBtn && mobileMenu && mobileMenuClose) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                mobileMenuClose.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                });
+                
+                // Close mobile menu when clicking on links
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        document.body.style.overflow = 'auto';
                     });
                 });
-            });
-            
-            // NFT detail modal functionality
-            const modal = document.getElementById('nft-modal');
-            const closeBtn = document.querySelector('.close-modal');
-            const viewDetailBtns = document.querySelectorAll('.view-detail');
-            
-            // Open modal
-            viewDetailBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
+            }
+
+            // Form submission
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    const nftItem = btn.closest('.nft-item');
-                    const nftId = nftItem.getAttribute('data-id');
-                    const nft = nftData[nftId];
-                    
-                    if (nft) {
-                        // Update modal icon
-                        const modalIcon = document.getElementById('modal-icon');
-                        modalIcon.className = nft.icon + ' text-7xl mb-4 text-red-400 vampire-bat';
-                        
-                        // Populate modal data
-                        document.getElementById('modal-title').textContent = nft.name;
-                        document.getElementById('modal-name').textContent = nft.name;
-                        document.getElementById('modal-type').textContent = nft.type;
-                        document.getElementById('modal-category').textContent = nft.category;
-                        document.getElementById('modal-count').textContent = nft.count;
-                        document.getElementById('modal-price').textContent = nft.price;
-                        document.getElementById('modal-description').textContent = nft.description;
-                        
-                        // Update features
-                        const featuresContainer = document.getElementById('modal-features');
-                        featuresContainer.innerHTML = `
-                            <ul class="space-y-2 text-gray-400">
-                                ${nft.features.map(feature => `
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-red-400 mt-1 mr-2"></i>
-                                        <span>${feature}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        `;
-                        
-                        // Show modal
-                        modal.style.display = 'block';
-                        document.body.style.overflow = 'hidden';
-                    }
-                });
-            });
-            
-            // Close modal
-            closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // Close modal when clicking outside
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // Login option handlers
-            const loginOptions = document.querySelectorAll('.login-option');
-            
-            loginOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const loginType = option.getAttribute('data-login');
-                    
-                    if (loginType === 'metamask' || loginType === 'walletconnect') {
-                        alert(`連接${loginType.charAt(0).toUpperCase() + loginType.slice(1)}錢包...`);
+                    const currentLang = document.body.getAttribute('data-lang');
+                    if (currentLang === 'en') {
+                        alert('Thank you for your interest! Our team will contact you within 24 hours.');
                     } else {
-                        alert(`使用${loginType.charAt(0).toUpperCase() + loginType.slice(1)}登入...`);
+                        alert('感謝您的關注！我們的團隊將在24小時內聯繫您。');
                     }
-                });
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Email subscription
-            const emailInput = document.querySelector('input[type="email"]');
-            const subscribeBtn = emailInput?.parentElement.querySelector('.btn-primary');
-            
-            if (emailInput && subscribeBtn) {
-                subscribeBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const email = emailInput.value;
-                    if (email && email.includes('@')) {
-                        alert('感謝您的訂閱！我們將第一時間向您發送最新消息。');
-                        emailInput.value = '';
-                    } else {
-                        alert('請輸入有效的電子郵件地址。');
-                    }
+                    contactForm.reset();
                 });
             }
         });
